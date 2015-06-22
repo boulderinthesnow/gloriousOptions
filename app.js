@@ -35,7 +35,13 @@ app.get('/signup' ,function(req,res){
 
 app.post("/signup", function (req, res) {
   var newUser = req.body.user;
-  console.log(newUser, "NEW USER")
+  if (newUser.gf === "on") {
+  	newUser.gf = true;
+  } else {
+  	newUser.gf = false;
+  }
+
+  console.log(newUser.gf, "NEW USER")
   db.User.create(newUser, function (err, user) {
     if (user) {
       req.login(user);
