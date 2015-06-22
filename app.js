@@ -26,48 +26,31 @@ app.use(loginMiddleware);
 
 //************************ USER ************************//
 
-
-app.get('/', routeMiddleware.ensureLoggedIn, function (req,res){
-  res.redirect("/users");
+app.get('/', routeMiddleware.ensureLoggedIn, function(req,res){
+  res.redirect('/users');
 });
 
-app.get('/users/new', function (req,res){
-  res.render('users/new');
+app.get('/signup', function (req,res){
+  res.render('users/signup');
 });
 
-app.post("/users/new", function (req, res) {
+app.post("/signup", function (req, res) {
   var newUser = req.body.user;
-  // SET GF CHECKBOX TO BOOLEAN
-  if (newUser.gf === "on") {
-  	newUser.gf = true;
-  } else {
-  	newUser.gf = false;
-  }
   db.User.create(newUser, function (err, user) {
     if (user) {
       req.login(user);
-      res.redirect("/layout");
+      res.redirect("/users");
     } else {
       console.log(err);
-      res.render("users/signup");
+      // TODO - handle errors in ejs!
+      res.render("/signup");
     }
   });
 });
 
-app.get('/users', routeMiddleware.ensureLoggedIn, function (req,res){
-    db.User.find({}, function(err,users){
-      res.render("users/index", {users: users});
-    });
-});
-
-
-app.get("/login", routeMiddleware.ensureLoggedIn, function (req, res) {
+app.get("/login", function (req, res) {
   res.render("users/login");
 });
-
-app.get("/layout", routeMiddleware.ensureLoggedIn, function (req, res) {
-	res.render("layout");
-})
 
 app.post("/login", function (req, res) {
   db.User.authenticate(req.body.user,
@@ -76,54 +59,68 @@ app.post("/login", function (req, res) {
       req.login(user);
       res.redirect("/users");
     } else {
+      // TODO - handle errors in ejs!
       res.render("users/login");
     }
   });
 });
 
 
-// NEED TO INTEGRATE SESSION COOKIE
-
-// app.post('/game', routeMiddleware.ensureLoggedIn, function(req,res){
-//   var change = new db.Model(req.body.change);
-//   change.ownerId = req.session.id;
-//   change.save(function(err,change){
-//     res.redirect("/game/play.ejs");
-//   });
-// });
-
-// app.get('/game/new', function(req,res){
-//   res.render("game/new");
-// });
-
-app.get('/users/:id/', routeMiddleware.ensureLoggedIn, function (req,res){
-  db.User.findById(req.params.id, function (err,user){
-    res.render("users/show", {user:user});
-  });
+app.get("/users/:id", function(req,res){
+    db.User.findById(req.params.id, function(err, user){
+    if(err){
+      res.render("errors/404");
+    } else {
+      res.render('users/show', {user:user});
+    }
+  })
 });
 
-//routeMiddleware.ensureCorrectUser,
-app.get('/users/:id/edit', routeMiddleware.ensureLoggedIn, function (req,res){
-  db.User.findById(req.params.id, function (err,user){
-    res.render("users/edit", {user:user});
-  });
+app.get("/users/:id/edit", function(req,res){
+  db.User.findById(req.params.id, function(err, user){
+    if(err){
+      res.render("errors/404");
+    } else {
+      res.render('users/edit', {user:user});
+    }
+  })
 });
 
-// app.put('/game/:id', routeMiddleware.ensureLoggedIn, function(req,res){
-//   db.Model.findByIdAndUpdate(req.params.id, req.body.change, function(err,data){
-//     res.redirect('/game');
-//   });
-// });
+app.put("/users/:id", function(req, res) {
+  db.User.findByIdAndUpdate(req.params.id, req.body.user,  function(err, user){
+    if(err){
+      res.render("404");
+    } else{
+      res.redirect('/users');
+    }
+ })
+});
 
-// app.delete('/game/:id', routeMiddleware.ensureLoggedIn, function(req,res){
-//   db.Model.findByIdAndRemove(req.params.id, function(err,data){
-//     res.redirect('/game');
-//   });
-// });
+app.delete("/users/:id", function(req, res) {
+  db.Model.findByIdAndRemove(req.params.id, function(err, user){
+    if(err){
+      res.render("404");
+    } else{
+      res.redirect('/users');
+    }
+  })
+})
+
+app.get("/users", routeMiddleware.ensureLoggedIn, function(req, res) {
+  db.User.findById(req.session.id,function(err,user){
+      db.User.find({}, function(err, users){
+        if(err){
+          res.render("errors/404");
+        } else {
+          res.render('users/index', {users:users, user:user});
+        }
+      })    
+  })
+}); 
 
 app.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/");
+  res.redirect("/login");
 });
 
 app.get('*', function(req,res){
@@ -133,34 +130,3 @@ app.get('*', function(req,res){
 app.listen(3000, function(){
   console.log("Server is listening on port 3000");
 });
-
-
-// PROCEDURE
-        // npm init
-        // git init
-        //*create folders
-        // echo "node_modules" > .gitignore
-        //*install all dependencies
-        // populate created files (header.ejs, index.js, etc.)
-        // git commit 
-
-
-//*CREATE FOLDERS
-    // middleware > loginHelper.js, routeHelper.js
-    // models > index.js, /yourmodel.js
-    // public > css > style.css || js > script.js || images > logo.png
-    // views > errors > 404.ejs || partials > header.ejs, footer.ejs || users > login.ejs, signup.ejs, index.ejs || modelPlural > index.ejs, new.ejs, show.ejs, edit.ejs
-
-
-//*INSTALL DEPENDENCIES
-    // "bcrypt"
-    // "body-parser"
-    // "cookie-session"
-    // "ejs"
-    // "express"
-    // "method-override"
-    // "mongoose"
-    // "morgan"
-
-
- 
