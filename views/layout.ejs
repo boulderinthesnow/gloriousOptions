@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+
+ <form id="mapForm"	action="" class="form-inline" method="GET">
+  <div class="form-group">
+    <input type="text" name="place[address]" id="address" class="form-control" placeholder="address" autofocus>
+  </div>
+ 
+  <input type="submit" value="add" class="btn btn-success">
+</form>
+
+<div id="map-canvas"></div>
+
+<div class="places"></div>
+
+<% include partials/footer %>

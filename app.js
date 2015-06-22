@@ -35,12 +35,12 @@ app.get('/signup' ,function(req,res){
 
 app.post("/signup", function (req, res) {
   var newUser = req.body.user;
+  // SET GF CHECKBOX TO BOOLEAN
   if (newUser.gf === "on") {
   	newUser.gf = true;
   } else {
   	newUser.gf = false;
   }
-
   console.log(newUser.gf, "NEW USER")
   db.User.create(newUser, function (err, user) {
     if (user) {
@@ -58,6 +58,10 @@ app.post("/signup", function (req, res) {
 app.get("/login", function (req, res) {
   res.render("users/login");
 });
+
+app.get("/layout", function (req, res) {
+	res.render("layout");
+})
 
 // app.post("/login", function (req, res) {
 //   db.User.authenticate(req.body.user,
