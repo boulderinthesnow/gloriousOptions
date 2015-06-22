@@ -2,5 +2,12 @@
 <h1>USER INDEX PAGE</h1>
 
 
+<% users.forEach(function(user){ %>
+  <p>
+  	username:
+    <%= user.username %>
+  </p>
+<% })%>
+
 
 <% include ../partials/footer %>

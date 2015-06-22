@@ -24,14 +24,21 @@ app.use(session({
 
 app.use(loginMiddleware);
 
-
-app.get('/', routeMiddleware.ensureLoggedIn, function(req,res){
-  res.render('users/index');
+app.get('/', routeMiddleware.ensureLoggedIn, function (req,res){
+  res.redirect("/users");
 });
 
-app.get('/signup' ,function(req,res){
-  res.render('users/signup');
+app.get('/signup', function (req,res){
+  res.render('users/new');
 });
+
+app.get('/users', routeMiddleware.ensureLoggedIn, function (req,res){
+    db.User.find({}, function(err,users){
+      res.render("users/index", {users: users});
+    });
+});
+
+
 
 app.post("/signup", function (req, res) {
   var newUser = req.body.user;
@@ -41,14 +48,12 @@ app.post("/signup", function (req, res) {
   } else {
   	newUser.gf = false;
   }
-  console.log(newUser.gf, "NEW USER")
   db.User.create(newUser, function (err, user) {
     if (user) {
       req.login(user);
       res.redirect("/layout");
     } else {
       console.log(err);
-      
       res.render("users/signup");
     }
   });
@@ -59,27 +64,23 @@ app.get("/login", function (req, res) {
   res.render("users/login");
 });
 
-app.get("/layout", function (req, res) {
+app.get("/layout", routeMiddleware.ensureLoggedIn, function (req, res) {
 	res.render("layout");
 })
 
-// app.post("/login", function (req, res) {
-//   db.User.authenticate(req.body.user,
-//   function (err, user) {
-//     if (!err && user !== null) {
-//       req.login(user);
-//       res.redirect("game/play");
-//     } else {
-//       res.render("users/login");
-//     }
-//   });
-// });
+app.post("/login", function (req, res) {
+  db.User.authenticate(req.body.user,
+  function (err, user) {
+    if (!err && user !== null) {
+      req.login(user);
+      res.redirect("/users");
+    } else {
+      res.render("users/login");
+    }
+  });
+});
 
-// app.get('/game', routeMiddleware.ensureLoggedIn, function(req,res){
-//     db.Model.find({}, function(err,data){
-//       res.render("game/index", {data: data});
-//     });
-// });
+
 
 // app.post('/game', routeMiddleware.ensureLoggedIn, function(req,res){
 //   var change = new db.Model(req.body.change);
