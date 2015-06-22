@@ -24,23 +24,18 @@ app.use(session({
 
 app.use(loginMiddleware);
 
+//************************ USER ************************//
+
+
 app.get('/', routeMiddleware.ensureLoggedIn, function (req,res){
   res.redirect("/users");
 });
 
-app.get('/signup', function (req,res){
+app.get('/users/new', function (req,res){
   res.render('users/new');
 });
 
-app.get('/users', routeMiddleware.ensureLoggedIn, function (req,res){
-    db.User.find({}, function(err,users){
-      res.render("users/index", {users: users});
-    });
-});
-
-
-
-app.post("/signup", function (req, res) {
+app.post("/users/new", function (req, res) {
   var newUser = req.body.user;
   // SET GF CHECKBOX TO BOOLEAN
   if (newUser.gf === "on") {
@@ -58,6 +53,16 @@ app.post("/signup", function (req, res) {
     }
   });
 });
+
+app.get('/users', routeMiddleware.ensureLoggedIn, function (req,res){
+    db.User.find({}, function(err,users){
+      res.render("users/index", {users: users});
+    });
+});
+
+
+
+
 
 
 app.get("/login", function (req, res) {
