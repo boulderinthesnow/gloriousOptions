@@ -61,11 +61,7 @@ app.get('/users', routeMiddleware.ensureLoggedIn, function (req,res){
 });
 
 
-
-
-
-
-app.get("/login", function (req, res) {
+app.get("/login", routeMiddleware.ensureLoggedIn, function (req, res) {
   res.render("users/login");
 });
 
@@ -86,6 +82,7 @@ app.post("/login", function (req, res) {
 });
 
 
+// NEED TO INTEGRATE SESSION COOKIE
 
 // app.post('/game', routeMiddleware.ensureLoggedIn, function(req,res){
 //   var change = new db.Model(req.body.change);
@@ -99,17 +96,18 @@ app.post("/login", function (req, res) {
 //   res.render("game/new");
 // });
 
-// app.get('/game/:id/', routeMiddleware.ensureLoggedIn, function(req,res){
-//   db.Model.findById(req.params.id, function(err,data){
-//     res.render("game/show", {data:data});
-//   });
-// });
+app.get('/users/:id/', routeMiddleware.ensureLoggedIn, function (req,res){
+  db.User.findById(req.params.id, function (err,user){
+    res.render("users/show", {user:user});
+  });
+});
 
-// app.get('/game/:id/edit', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectUser, function(req,res){
-//   db.Model.findById(req.params.id, function(err,data){
-//     res.render("game/edit", {data:data});
-//   });
-// });
+//routeMiddleware.ensureCorrectUser,
+app.get('/users/:id/edit', routeMiddleware.ensureLoggedIn, function (req,res){
+  db.User.findById(req.params.id, function (err,user){
+    res.render("users/edit", {user:user});
+  });
+});
 
 // app.put('/game/:id', routeMiddleware.ensureLoggedIn, function(req,res){
 //   db.Model.findByIdAndUpdate(req.params.id, req.body.change, function(err,data){
