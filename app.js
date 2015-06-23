@@ -120,6 +120,65 @@ app.get("/users", routeMiddleware.ensureLoggedIn, function(req, res) {
   })
 }); 
 
+//************************ RESTAURANTS ************************//
+
+app.get("/restaurants/:id", function(req,res){
+    db.Restaurant.findById(req.params.id, function(err, restaurant){
+    if(err){
+      res.render("errors/404");
+    } else {
+      res.render('restaurants/show', {restaurant:restaurant});
+    }
+  })
+});
+
+app.get("/restaurants/:id/edit", function(req,res){
+  db.Restaurant.findById(req.params.id, function(err, restaurant){
+    if(err){
+      res.render("errors/404");
+    } else {
+      res.render('restaurants/edit', {restaurant:restaurant});
+    }
+  })
+});
+
+app.put("/restaurants/:id", function(req, res) {
+  db.Restaurant.findByIdAndUpdate(req.params.id, req.body.restaurant,  function(err, restaurant){
+    if(err){
+      res.render("404");
+    } else{
+      res.redirect('/restaurants');
+    }
+ })
+});
+
+app.delete("/restaurants/:id", function(req, res) {
+  db.Restaurant.findByIdAndRemove(req.params.id, function(err, restaurant){
+    if(err){
+      res.render("404");
+    } else{
+      res.redirect('/restaurants');
+    }
+  })
+})
+
+app.get("/restaurants", routeMiddleware.ensureLoggedIn, function(req, res) {
+  db.Restaurant.findById(req.session.id,function(err,restaurant){
+      db.Restaurant.find({}, function(err, restaurants){
+        if(err){
+          res.render("errors/404");
+        } else {
+          res.render('restaurants/index', {restaurants:restaurants, restaurant:restaurant});
+        }
+      })    
+  })
+}); 
+
+//************************ ITEMS ************************//
+//************************ REMAINDER ************************//
+
+
+
 
 
 app.get("/logout", function (req, res) {
