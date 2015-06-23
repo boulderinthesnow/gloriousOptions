@@ -6,48 +6,11 @@ var SALT_WORK_FACTOR = 10;
 
 var userSchema = new mongoose.Schema({
   username: String,
-  gf: Boolean,
   password: String
 });
 
 
- // statics === CLASS METHODS
-userSchema.statics.authenticate = function (formData, callback) {
-  // this refers to the model!
-  this.findOne({
-      email: formData.email
-    },
-    function (err, user) {
-      if (user === null){
-        callback("Invalid email or password",null);
-      }
-      else {
-        user.checkPassword(formData.password, callback);
-      }
 
-    });
-};
-
-
-// methods === INSTANCE METHODS!
-userSchema.methods.checkPassword = function(password, callback) {
-  var user = this;
-  bcrypt.compare(password, user.password, function (err, isMatch) {
-    if (isMatch) {
-      callback(null, user);
-    } else {
-      callback(err, null);
-    }
-  });
-}; 
-
-userSchema.pre('remove', function (next) {
-	var user = this
-   Post.remove({user: user._id}).exec();
-   Comment.remove({user: user._id}).exec();
-   // TODO --- HOW DO WE REMOVE COMMENTS FROM MULTIPLE USERS ONCE A POST IS REMOVED
-   next();
-});
 
 userSchema.pre('save', function (next) {
 
@@ -63,6 +26,14 @@ userSchema.pre('save', function (next) {
     return next();
   }
 
+
+  userSchema.pre('remove', function (next) {
+  	var user = this
+     // Post.remove({user: user._id}).exec();
+     // Comment.remove({user: user._id}).exec();
+     // TODO --- HOW DO WE REMOVE COMMENTS FROM MULTIPLE USERS ONCE A POST IS REMOVED
+     next();
+  });
 
   // db.User.create(req.body.user, function(){
 
@@ -109,8 +80,40 @@ userSchema.pre('save', function (next) {
 // elie.sayGoodbye()
 
 
+ // statics === CLASS METHODS
+userSchema.statics.authenticate = function (formData, callback) {
+  // this refers to the model!
+  console.log("RUNNING AUTHENTICATE")
+  this.findOne({
+      username: formData.username
+    },
+    function (err, user) {
+      if (user === null){
+        callback("Invalid username or password",null);
+        console.log("USER IS NULL");
+      }
+      else {
+        user.checkPassword(formData.password, callback);
+      }
+
+    });
+};
+
+
+// methods === INSTANCE METHODS!
+userSchema.methods.checkPassword = function(password, callback) {
+  var user = this;
+  bcrypt.compare(password, user.password, function (err, isMatch) {
+    if (isMatch) {
+      callback(null, user);
+    } else {
+      callback(err, null);
+    }
+  });
+}; 
+
+
 
 
 var User = mongoose.model("User", userSchema);
-
 module.exports = User;

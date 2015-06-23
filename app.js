@@ -53,8 +53,10 @@ app.get("/login", function (req, res) {
 });
 
 app.post("/login", function (req, res) {
+	//console.log(req.body.user);
   db.User.authenticate(req.body.user,
   function (err, user) {
+  	console.log(user, "USER")
     if (!err && user !== null) {
       req.login(user);
       res.redirect("/users");
