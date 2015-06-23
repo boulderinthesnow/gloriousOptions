@@ -10,18 +10,39 @@
 <br>
 <a href="/restaurants/new">Create a new restaurant</a>
 
-<% restaurants.forEach(function (restaurant){ %>
-<h1><%=restaurant.name%></h1>
-<p><%=restaurant.address%></p>
-<p><%=restaurant.hours%></p>
-<p><%=restaurant.cost%></p>
-<a href="/restaurants/<%=restaurant.id%>/edit">edit restaurant</a>
-<a href="/restaurants/<%=restaurant.id%>/comments/new">add a comment</a> 
-
-<form action="/restaurants/<%=restaurant.id%>?_method=delete" method="POST">
+<table data-toggle="table" data-height="299" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th data-field="name">Name</th>
+            <th data-field="address">Address</th>
+            <th data-field="hours">Hours</th>
+            <th data-field="costs">Costs</th>
+            <th data-field="edit">Edit</th>
+            <th data-field="comment">Add a Comment</th>
+        </tr>
+    </thead>
+		<tbody>
+			<% restaurants.forEach(function (restaurant){ %>
+			<tr>
+				<td><%=restaurant.name%></td>
+				<td><%=restaurant.address%></td>
+				<td><%=restaurant.hours%></td>
+				<td><%=restaurant.cost%></td>
+				<td><a href="/restaurants/<%=restaurant.id%>/edit"> edit restaurant</a></td>
+				<td><a href="/restaurants/<%=restaurant.id%>/comments/new"> add a comment</a> </td>
+				<td><form action="/restaurants/<%=restaurant.id%>?_method=delete" method="POST">
 	<input type="submit" value="X" class="btn btn-danger btn-sm">
-</form>
+</form></td>
+			</tr>
+			<% }) %>
+		</tbody>
+</table>
 
-<% }) %>
+
+
+
+
+
+
 
 <% include ../partials/footer %>
