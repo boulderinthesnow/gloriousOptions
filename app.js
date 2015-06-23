@@ -127,9 +127,9 @@ app.get('/restaurants/new', function (req,res){
 });
 
 app.post("/restaurants/new", function (req, res) {
-  var newRestuarant = req.body.user;
-  db.Restaurant.create(newRestuarant, function (err, user) {
-    if (user) {
+  var newRestuarant = req.body.restaurant;
+  db.Restaurant.create(newRestuarant, function (err, restaurant) {
+    if (restaurant) {
       res.redirect("/restaurants");
     } else {
       console.log(err);
@@ -137,6 +137,18 @@ app.post("/restaurants/new", function (req, res) {
     }
   });
 });
+
+app.get("/restaurants", routeMiddleware.ensureLoggedIn, function(req, res) {
+  db.Restaurant.findById(req.session.id,function(err,restaurant){
+      db.Restaurant.find({}, function(err, restaurants){
+        if(err){
+          res.render("errors/404");
+        } else {
+          res.render('restaurants/index', {restaurants:restaurants});
+        }
+      })    
+  })
+}); 
 
 app.get("/restaurants/:id", function(req,res){
     db.Restaurant.findById(req.params.id, function(err, restaurant){
@@ -178,17 +190,7 @@ app.delete("/restaurants/:id", function(req, res) {
   })
 })
 
-app.get("/restaurants", routeMiddleware.ensureLoggedIn, function(req, res) {
-  db.Restaurant.findById(req.session.id,function(err,restaurant){
-      db.Restaurant.find({}, function(err, restaurants){
-        if(err){
-          res.render("errors/404");
-        } else {
-          res.render('restaurants/index', {restaurants:restaurants, restaurant:restaurant});
-        }
-      })    
-  })
-}); 
+
 
 //************************ ITEMS ************************//
 //************************ REMAINDER ************************//

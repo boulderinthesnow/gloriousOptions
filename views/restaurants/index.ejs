@@ -11,8 +11,10 @@
 <a href="/restaurants/new">Create a new restaurant</a>
 
 <% restaurants.forEach(function (restaurant){ %>
-<h1><%=restaurant.title%></h1>
-<p><%=restaurant.body%></p>
+<h1><%=restaurant.name%></h1>
+<p><%=restaurant.address%></p>
+<p><%=restaurant.hours%></p>
+<p><%=restaurant.cost%></p>
 <a href="/restaurants/<%=restaurant.id%>/edit">edit restaurant</a>
 <a href="/restaurants/<%=restaurant.id%>/comments/new">add a comment</a> 
 
