@@ -122,6 +122,22 @@ app.get("/users", routeMiddleware.ensureLoggedIn, function(req, res) {
 
 //************************ RESTAURANTS ************************//
 
+app.get('/restaurants/new', function (req,res){
+  res.render('restaurants/new');
+});
+
+app.post("/restaurants/new", function (req, res) {
+  var newRestuarant = req.body.user;
+  db.Restaurant.create(newRestuarant, function (err, user) {
+    if (user) {
+      res.redirect("/restaurants");
+    } else {
+      console.log(err);
+      // TODO - handle errors in ejs!
+    }
+  });
+});
+
 app.get("/restaurants/:id", function(req,res){
     db.Restaurant.findById(req.params.id, function(err, restaurant){
     if(err){
