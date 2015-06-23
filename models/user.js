@@ -89,7 +89,7 @@ userSchema.statics.authenticate = function (formData, callback) {
     },
     function (err, user) {
       if (user === null){
-        callback("Invalid username or password",null);
+        callback("Invalid username or password", null);
         console.log("USER IS NULL");
       }
       else {

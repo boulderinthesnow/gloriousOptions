@@ -99,7 +99,7 @@ app.put("/users/:id", function(req, res) {
 });
 
 app.delete("/users/:id", function(req, res) {
-  db.Model.findByIdAndRemove(req.params.id, function(err, user){
+  db.User.findByIdAndRemove(req.params.id, function(err, user){
     if(err){
       res.render("404");
     } else{
