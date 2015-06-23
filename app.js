@@ -199,15 +199,12 @@ app.delete("/restaurants/:id", function (req, res) {
 
 //************************ ITEMS ************************//
 
-app.get('/restaurants/:restaurant_id/items/', function (req,res){
-  res.render('items/index', {user_id:req.session.id});
-});
 
 //INDEX
 app.get('/restaurants/:restaurant_id/items', function (req,res){
-  db.Comment.find({post:req.params.post_id}).populate('author').exec(function (err,items){
+  db.Item.find({post:req.params.restaurant_id}).populate('restaurant').exec(function (err,items){
     res.format({
-          'text/html': function(){ $$$$
+          'text/html': function(){ 
             res.render("items/index", {items:items});
           },
 
