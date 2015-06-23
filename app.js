@@ -16,7 +16,7 @@ app.use(morgan('tiny'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use(session({
+app.use(session ({
   maxAge: 3600000,
   secret: 'illnevertell',
   name: "chocolate chip"
@@ -26,7 +26,7 @@ app.use(loginMiddleware);
 
 //************************ USER ************************//
 
-app.get('/', routeMiddleware.ensureLoggedIn, function(req,res){
+app.get('/', routeMiddleware.ensureLoggedIn, function (req,res){
   res.redirect('/users');
 });
 
@@ -68,8 +68,8 @@ app.post("/login", function (req, res) {
 });
 
 
-app.get("/users/:id", function(req,res){
-    db.User.findById(req.params.id, function(err, user){
+app.get("/users/:id", function (req,res){
+    db.User.findById(req.params.id, function (err, user){
     if(err){
       res.render("errors/404");
     } else {
@@ -78,8 +78,8 @@ app.get("/users/:id", function(req,res){
   })
 });
 
-app.get("/users/:id/edit", function(req,res){
-  db.User.findById(req.params.id, function(err, user){
+app.get("/users/:id/edit", function (req,res){
+  db.User.findById(req.params.id, function (err, user){
     if(err){
       res.render("errors/404");
     } else {
@@ -88,8 +88,8 @@ app.get("/users/:id/edit", function(req,res){
   })
 });
 
-app.put("/users/:id", function(req, res) {
-  db.User.findByIdAndUpdate(req.params.id, req.body.user,  function(err, user){
+app.put("/users/:id", function (req, res) {
+  db.User.findByIdAndUpdate(req.params.id, req.body.user,  function (err, user){
     if(err){
       res.render("404");
     } else{
@@ -98,8 +98,8 @@ app.put("/users/:id", function(req, res) {
  })
 });
 
-app.delete("/users/:id", function(req, res) {
-  db.User.findByIdAndRemove(req.params.id, function(err, user){
+app.delete("/users/:id", function (req, res) {
+  db.User.findByIdAndRemove(req.params.id, function (err, user){
     if(err){
       res.render("404");
     } else{
@@ -108,9 +108,9 @@ app.delete("/users/:id", function(req, res) {
   })
 })
 
-app.get("/users", routeMiddleware.ensureLoggedIn, function(req, res) {
-  db.User.findById(req.session.id,function(err,user){
-      db.User.find({}, function(err, users){
+app.get("/users", routeMiddleware.ensureLoggedIn, function (req, res) {
+  db.User.findById(req.session.id,function (err,user){
+      db.User.find({}, function (err, users){
         if(err){
           res.render("errors/404");
         } else {
@@ -123,11 +123,13 @@ app.get("/users", routeMiddleware.ensureLoggedIn, function(req, res) {
 //************************ RESTAURANTS ************************//
 
 app.get('/restaurants/new', function (req,res){
-  res.render('restaurants/new');
+  res.render('restaurants/new', {user_id:req.session.id});
 });
 
 app.post("/restaurants/new", function (req, res) {
   var newRestuarant = req.body.restaurant;
+	console.log(newRestuarant.user,"*********NEWRESTUARANT.USER**********");
+	
   db.Restaurant.create(newRestuarant, function (err, restaurant) {
     if (restaurant) {
       res.redirect("/restaurants");
@@ -138,20 +140,23 @@ app.post("/restaurants/new", function (req, res) {
   });
 });
 
-app.get("/restaurants", routeMiddleware.ensureLoggedIn, function(req, res) {
-  db.Restaurant.findById(req.session.id,function(err,restaurant){
-      db.Restaurant.find({}, function(err, restaurants){
+app.get("/restaurants", routeMiddleware.ensureLoggedIn, function (req, res) {
+  db.Restaurant.findById(req.session.id,function (err,restaurant){
+      db.Restaurant.find({}).populate("user").exec( function (err, restaurants){
         if(err){
           res.render("errors/404");
         } else {
+        	 // db.User.findById(req.session.id), function (err, restaurants) {
+        	 // 	res.render('restaurants/index', {restaurants:restaurants});
+        	 // }
           res.render('restaurants/index', {restaurants:restaurants});
         }
       })    
   })
 }); 
 
-app.get("/restaurants/:id", function(req,res){
-    db.Restaurant.findById(req.params.id, function(err, restaurant){
+app.get("/restaurants/:id", function (req,res){
+    db.Restaurant.findById(req.params.id).populate("user").exec( function (err, restaurant){
     if(err){
       res.render("errors/404");
     } else {
@@ -160,8 +165,8 @@ app.get("/restaurants/:id", function(req,res){
   })
 });
 
-app.get("/restaurants/:id/edit", function(req,res){
-  db.Restaurant.findById(req.params.id, function(err, restaurant){
+app.get("/restaurants/:id/edit", function (req,res){
+  db.Restaurant.findById(req.params.id, function (err, restaurant){
     if(err){
       res.render("errors/404");
     } else {
@@ -170,8 +175,8 @@ app.get("/restaurants/:id/edit", function(req,res){
   })
 });
 
-app.put("/restaurants/:id", function(req, res) {
-  db.Restaurant.findByIdAndUpdate(req.params.id, req.body.restaurant,  function(err, restaurant){
+app.put("/restaurants/:id", function (req, res) {
+  db.Restaurant.findByIdAndUpdate(req.params.id, req.body.restaurant,  function (err, restaurant){
     if(err){
       res.render("404");
     } else{
@@ -180,8 +185,8 @@ app.put("/restaurants/:id", function(req, res) {
  })
 });
 
-app.delete("/restaurants/:id", function(req, res) {
-  db.Restaurant.findByIdAndRemove(req.params.id, function(err, restaurant){
+app.delete("/restaurants/:id", function (req, res) {
+  db.Restaurant.findByIdAndRemove(req.params.id, function (err, restaurant){
     if(err){
       res.render("404");
     } else{
@@ -204,10 +209,10 @@ app.get("/logout", function (req, res) {
   res.redirect("/login");
 });
 
-app.get('*', function(req,res){
+app.get('*', function (req,res){
   res.render('errors/404');
 });
 
-app.listen(3000, function(){
+app.listen(3000, function (){
   console.log("Server is listening on port 3000");
 });
