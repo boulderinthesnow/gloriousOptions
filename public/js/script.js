@@ -5,7 +5,7 @@ $(function() {
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       zoom: 15,
       center: myLatLong
-    });
+  });
     var marker = new google.maps.Marker({
         position: myLatLong,
         map: map,
@@ -26,9 +26,13 @@ $(function() {
   
   var allR = $("#allR").val();
   allR = allR.replace(/[, ]+/g, " ").trim().split("!");
+  var firstAddress = allR[0].replace(/[ ]+/g, "+");
+
+$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + firstAddress).done(function (data) {
+   console.log(data)
+});
 
 
-
-  console.log(allR)
+  console.log(firstAddress)
   initialize();
 });
