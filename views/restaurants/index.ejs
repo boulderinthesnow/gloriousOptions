@@ -38,14 +38,14 @@
 				<td><form action="/restaurants/<%=restaurant.id%>?_method=delete" method="POST">
 						<input type="submit" value="X" class="btn btn-danger btn-sm">
 						</form></td>
-				<td><%=restaurant.user.username%> YO</td>
+				<td><%=restaurant.user.username%></td>
 				<td><a href="/restaurants/<%=restaurant.id%>/items"> See Items</a> </td>
 			</tr>
 			<% allR.push(restaurant.address + "!"); %>
 			<% }) %>
 		</tbody>
 </table>
-<input type="text" name="allR" id="allR" value="<%=allR%>">
+<input type="hidden" name="allR" id="allR" value="<%=allR%>">
 
 
 

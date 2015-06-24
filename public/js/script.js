@@ -6,11 +6,7 @@ $(function() {
       zoom: 15,
       center: myLatLong
     });
-    var marker = new google.maps.Marker({
-        position: myLatLong,
-        map: map,
-        title: 'Hello World!'
-    });
+
   } // end initialize
 
   google.maps.event.addDomListener(window, 'load', initialize);
@@ -20,6 +16,11 @@ $(function() {
   	console.log(event.latLng.F);
 
   	//Add your code to add markers here
+    var marker = new google.maps.Marker({
+        position: myLatLong,
+        map: map,
+        title: 'Hello World!'
+    });
   }
 
 
