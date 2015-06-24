@@ -26,6 +26,7 @@
         </tr>
     </thead>
 		<tbody>
+			<% var allR = []; %>
 			<% restaurants.forEach(function (restaurant){ %>
 			<tr>
 				<td><%=restaurant.name%></td>
@@ -40,9 +41,12 @@
 				<td><%=restaurant.user.username%> YO</td>
 				<td><a href="/restaurants/<%=restaurant.id%>/items"> See Items</a> </td>
 			</tr>
+			<% allR.push(restaurant.address + "!"); %>
 			<% }) %>
 		</tbody>
 </table>
+<input type="text" name="allR" id="allR" value="<%=allR%>">
+
 
 
 

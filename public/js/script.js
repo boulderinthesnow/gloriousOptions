@@ -2,8 +2,8 @@ $(function() {
   var map;
   function initialize() {
     map = new google.maps.Map(document.getElementById('map-canvas'), {
-      zoom: 8,
-      center: {lat: -34.397, lng: 150.644}
+      zoom: 15,
+      center: {lat: 37.7854224, lng: -122.403726}
     });
   }
   google.maps.event.addDomListener(window, 'load', initialize);
@@ -14,9 +14,19 @@ $(function() {
 
   	//Add your code to add markers here
   }
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Hello World!'
+  });
 
+  
+  var allR = $("#allR").val();
+  allR = allR.replace(/[, ]+/g, " ").trim().split("!");
+
+
+
+  console.log(allR)
   initialize();
 });
-
-console.log("*********LOG YOUR FACE**********");
 
