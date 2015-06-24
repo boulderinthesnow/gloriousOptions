@@ -18,4 +18,5 @@ $(function() {
   initialize();
 });
 
+console.log("*********LOG YOUR FACE**********");
 
