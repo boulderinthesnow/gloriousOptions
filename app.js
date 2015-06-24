@@ -201,92 +201,92 @@ app.delete("/restaurants/:id", function (req, res) {
 
 
 //INDEX
-app.get('/restaurants/:restaurant_id/items', function (req,res){
-  db.Item.find({post:req.params.restaurant_id}).populate('restaurant').exec(function (err,items){
-    res.format({
-          'text/html': function(){ 
-            res.render("items/index", {items:items});
-          },
+// app.get('/restaurants/:restaurant_id/items', function (req,res){
+//   db.Item.find({restaurant:req.params.restaurant_id}, function (err,items){
+//     res.format({
+//           'text/html': function(){ 
+//             res.render("items/index", {items:items});
+//           },
 
-          'application/json': function(){
-            res.send({ items: items });
-          },
-          'default': function() {
-            // log the request and respond with 406
-            res.status(406).send('Not Acceptable');
-          }
-    });
-  })
-});
+//           'application/json': function(){
+//             res.send({ items: items });
+//           },
+//           'default': function() {
+//             // log the request and respond with 406
+//             res.status(406).send('Not Acceptable');
+//           }
+//     });
+//   })
+// });
 
 
-app.post("/items/new", function (req, res) {
-  var newRestuarant = req.body.restaurant;
+// app.post("/items/new", function (req, res) {
+//   var newRestuarant = req.body.restaurant;
   
-  db.Item.create(newRestuarant, function (err, restaurant) {
-    if (restaurant) {
-      res.redirect("/items");
-    } else {
-      console.log(err);
-      // TODO - handle errors in ejs!
-    }
-  });
-});
+//   db.Item.create(newRestuarant, function (err, restaurant) {
+//     if (restaurant) {
+//       res.redirect("/items");
+//     } else {
+//       console.log(err);
+//       // TODO - handle errors in ejs!
+//     }
+//   });
+// });
 
-app.get("/items", routeMiddleware.ensureLoggedIn, function (req, res) {
-  db.Item.findById(req.session.id,function (err,item){
-      db.Item.find({}).populate("user").exec( function (err, items){
-        if(err){
-          res.render("errors/404");
-        } else {
-           // db.User.findById(req.session.id), function (err, items) {
-           //   res.render('items/index', {items:items});
-           // }
-          res.render('items/index', {items:items});
-        }
-      })    
-  })
-}); 
+// app.get("/items", routeMiddleware.ensureLoggedIn, function (req, res) {
+//   db.Item.findById(req.session.id,function (err,item){
+//       db.Item.find({}).populate("user").exec( function (err, items){
+//         if(err){
+//           res.render("errors/404");
+//         } else {
+//            // db.User.findById(req.session.id), function (err, items) {
+//            //   res.render('items/index', {items:items});
+//            // }
+//           res.render('items/index', {items:items});
+//         }
+//       })    
+//   })
+// }); 
 
-app.get("/items/:id", function (req,res){
-    db.Item.findById(req.params.id).populate("user").exec( function (err, item){
-    if(err){
-      res.render("errors/404");
-    } else {
-      res.render('items/show', {item:item});
-    }
-  })
-});
+// app.get("/items/:id", function (req,res){
+//     db.Item.findById(req.params.id).populate("user").exec( function (err, item){
+//     if(err){
+//       res.render("errors/404");
+//     } else {
+//       res.render('items/show', {item:item});
+//     }
+//   })
+// });
 
-app.get("/items/:id/edit", function (req,res){
-  db.Item.findById(req.params.id, function (err, item){
-    if(err){
-      res.render("errors/404");
-    } else {
-      res.render('items/edit', {item:item});
-    }
-  })
-});
+// app.get("/items/:id/edit", function (req,res){
+//   db.Item.findById(req.params.id, function (err, item){
+//     if(err){
+//       res.render("errors/404");
+//     } else {
+//       res.render('items/edit', {item:item});
+//     }
+//   })
+// });
 
-app.put("/items/:id", function (req, res) {
-  db.Item.findByIdAndUpdate(req.params.id, req.body.item,  function (err, item){
-    if(err){
-      res.render("404");
-    } else{
-      res.redirect('/items');
-    }
- })
-});
+// app.put("/items/:id", function (req, res) {
+//   db.Item.findByIdAndUpdate(req.params.id, req.body.item,  function (err, item){
+//     if(err){
+//       res.render("404");
+//     } else{
+//       res.redirect('/items');
+//     }
+//  })
+// });
 
-app.delete("/items/:id", function (req, res) {
-  db.Item.findByIdAndRemove(req.params.id, function (err, item){
-    if(err){
-      res.render("404");
-    } else{
-      res.redirect('/items');
-    }
-  })
-})
+// app.delete("/items/:id", function (req, res) {
+//   db.Item.findByIdAndRemove(req.params.id, function (err, item){
+//     if(err){
+//       res.render("404");
+//     } else{
+//       res.redirect('/items');
+//     }
+//   })
+// })
 
 
 //************************ REMAINDER ************************//

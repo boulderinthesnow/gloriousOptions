@@ -5,12 +5,8 @@ $(function() {
       zoom: 8,
       center: {lat: -34.397, lng: 150.644}
     });
-
-    var mapDiv = document.getElementById('map-canvas');
-
-    google.maps.event.addListener(map, 'click', addMarker);
   }
-
+  google.maps.event.addDomListener(window, 'load', initialize);
 
   function addMarker(event) {
   	console.log(event.latLng.A);
@@ -21,3 +17,5 @@ $(function() {
 
   initialize();
 });
+
+
