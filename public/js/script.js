@@ -6,21 +6,21 @@ $(function() {
     zoom: 15,
     center: myLatLong  
   }
-  function initialize() {
+  //function initialize() {
    
     map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
     
-    var marker = new google.maps.Marker({
-        position: myLatLong,
-        map: map,
-        title: 'Hello World!'
-    });
+    // var marker = new google.maps.Marker({
+    //     position: myLatLong,
+    //     map: map,
+    //     title: 'Hello World!'
+    // });
 
 
    // google.maps.event.addListener(window, 'load', addMarker)
-  } // end initialize
+  //} // end initialize
 
- google.maps.event.addDomListener(window, 'load', initialize);
+ //google.maps.event.addDomListener(window, 'load', initialize);
 
   // function addMarker(event) {
   // 	console.log(event.latLng.A);
@@ -40,7 +40,7 @@ $(function() {
 
   // } // end initialize
 
-  
+
 
   // google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -49,12 +49,11 @@ $(function() {
   // 	console.log(event.latLng.F);
 
   // 	//Add your code to add markers here
-  //   var marker = new google.maps.Marker({
-  //       position: myLatLong,
-  //       map: map,
-  //       title: 'Hello World!'
-  //   });
-  // }
+    // var marker = new google.maps.Marker({
+    //     position: myLatLong,
+    //     map: map,
+    //     title: 'Hello World!'
+    // });
 
 
   
@@ -73,10 +72,10 @@ $(function() {
          console.log(lat, long, address)
          var myLatlng = new google.maps.LatLng(lat,long);
 
-         // new google.maps.Marker({
-         //     position: myLatlng,
-         //     map: map
-         // });
+         new google.maps.Marker({
+             position: myLatlng,
+             map: map
+         });
       });
 
   };
@@ -87,6 +86,6 @@ $(function() {
 
 
 
-  initialize();
+  // initialize();
  });
 
