@@ -2,8 +2,8 @@ $(function() {
   var map;
   function initialize() {
     map = new google.maps.Map(document.getElementById('map-canvas'), {
-      zoom: 8,
-      center: {lat: -34.397, lng: 150.644}
+      zoom: 15,
+      center: {lat: 37.7854224, lng: -122.403726}
     });
   }
   google.maps.event.addDomListener(window, 'load', initialize);
@@ -18,5 +18,4 @@ $(function() {
   initialize();
 });
 
-console.log("*********LOG YOUR FACE**********");
 
