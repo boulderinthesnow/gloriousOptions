@@ -37,7 +37,6 @@
 			<td><%=restaurant.hours%></td>
 			<td><%=restaurant.cost%></td>
 			<%=  %>
-			<%= console.log(restaurant.user.gf) %>
 
 
 			<td><a href="/restaurants/<%=restaurant.id%>/edit"> edit restaurant</a></td>
@@ -57,12 +56,29 @@
 
 
 <%function logOptions(restUser){  %>
-<% var tempArr = []%>
-<% if (restUser.gf){ %>
-<% tempArr.push (restUser.gf)  %>
-<%  %>
-<%}  %> <!- end if->
-<% return tempArr %>
+	<% var tempArr = []%>
+	<% if (restUser.gf){ %>
+		<% tempArr.push ("GF")  %>
+		<%  %>
+	<% }  %> <!- end if->
+
+	<% if (restUser.df){ %>
+		<% tempArr.push ("DF")  %>
+		<%  %>
+	<% }  %> <!- end if->
+
+	<% if (restUser.ef){ %>
+		<% tempArr.push ("EF")  %>
+		<%  %>
+	<% }  %> <!- end if->
+
+	<% if (restUser.sf){ %>
+		<% tempArr.push ("SF")  %>
+		<%  %>
+	<% }  %> <!- end if->
+
+	<% return tempArr %>
+
 <%}  %> <!- end logOptions->
 
 
