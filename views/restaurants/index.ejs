@@ -36,8 +36,8 @@
 				<!-- <td><%=restaurant.gf%></td> -->
 				<td><%=restaurant.hours%></td>
 				<td><%=restaurant.cost%></td>
-
-				<%= logOptions(restaurant) %>
+				<%= logOptions(restaurant.user) %>
+	
 
 
 				<td><a href="/restaurants/<%=restaurant.id%>/edit"> edit restaurant</a></td>
@@ -56,15 +56,11 @@
 
 
 
-				<%function logOptions(restaurant){  %>
-				<% for (each in restaurant.user) {  %>
-				<%= console.log(each)  %>
+				<%function logOptions(restUser){  %>
+				<% if (restUser.gf){ %>
+				<%= console.log (restUser.gf)  %>
 				<%  %>
-				<%  %>
-				<%  %>
-				<%  %>
-				<%  %>
-				<%}  %> <!- end forEach->
+				<%}  %>
 				<%}  %> <!- end logOptions->
 
 
