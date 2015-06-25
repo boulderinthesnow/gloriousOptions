@@ -3,7 +3,7 @@ $(function() {
   var myLatLong = new google.maps.LatLng(37.7854224, -122.403726)
 
   var myOptions = {
-    zoom: 15,
+    zoom: 13,
     center: myLatLong  
   }
    
@@ -12,12 +12,20 @@ $(function() {
 
   
   var allR = $("#allR").val();
-  allR = allR.replace(/[, ]+/g, " ").trim().split("!");
+  
+  allR = allR.replace(/[ ]+/g, " ").trim().split("!");
+  // var allRStrip = allR[i]
+  // console.log(allRStrip,"*********ALLRSTRIP**********");
 
 
 
   for (var i = 0 ; i < allR.length -1 ; i++) {
-      var urlAddress = allR[i].replace(/[ ]+/g, "+"); //add pluses for address
+      var urlAddress = allR[i].replace(/[ ]+/g, "+").replace(/^,/, ''); //add pluses for address
+      var urlAddressClear = urlAddress.replace(/,\+/g, ",") //should replace ,+ with +
+
+
+      
+
       $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + urlAddress).done(function (data) {
          
          var lat = (data.results[0].geometry.location.lat);

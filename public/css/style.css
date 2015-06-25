@@ -8,3 +8,18 @@ html, body {
   padding: 0px;
   border-style: none;
 }
+
+.main-checkboxes {
+	font-size: 30px;
+}
+
+#top {
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+}
+
+#mainButtons {
+	width: 50%;
+	margin: 0 auto;
+}
