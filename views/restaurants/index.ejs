@@ -18,6 +18,7 @@
         <tr>
             <th data-field="name">Name</th>
             <th data-field="address">Address</th>
+            <!-- <th data-field="address">Options</th> -->
             <th data-field="hours">Hours</th>
             <th data-field="costs">Costs</th>
             <th data-field="edit">Edit</th>
@@ -32,8 +33,10 @@
 			<tr>
 				<td><%=restaurant.name%></td>
 				<td><%=restaurant.address%></td>
+				<!-- <td><%=restaurant.gf%></td> -->
 				<td><%=restaurant.hours%></td>
 				<td><%=restaurant.cost%></td>
+				<%= console.log(restaurant.user.gf)  %>
 				<td><a href="/restaurants/<%=restaurant.id%>/edit"> edit restaurant</a></td>
 				<td><a href="/restaurants/<%=restaurant.id%>/comments/new"> add a comment</a> </td>
 				<td><form action="/restaurants/<%=restaurant.id%>?_method=delete" method="POST">
@@ -49,7 +52,14 @@
 <input type="hidden" name="allR" id="allR" value="<%=allR%>">
 
 
-
+<%function logOptions()  %>
+<%  %>
+<%  %>
+<%  %>
+<%  %>
+<%  %>
+<%  %>
+<%  %>
 
 
 

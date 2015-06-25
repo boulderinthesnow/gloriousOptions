@@ -128,7 +128,6 @@ app.get('/restaurants/new', function (req,res){
 
 app.post("/restaurants/new", function (req, res) {
   var newRestuarant = req.body.restaurant;
-	console.log(newRestuarant.user,"*********NEWRESTUARANT.USER**********");
 	
   db.Restaurant.create(newRestuarant, function (err, restaurant) {
     if (restaurant) {
@@ -149,6 +148,7 @@ app.get("/restaurants", routeMiddleware.ensureLoggedIn, function (req, res) {
         	 // db.User.findById(req.session.id), function (err, restaurants) {
         	 // 	res.render('restaurants/index', {restaurants:restaurants});
         	 // }
+
           res.render('restaurants/index', {restaurants:restaurants});
         }
       })    
