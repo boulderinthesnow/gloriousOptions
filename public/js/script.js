@@ -34,13 +34,27 @@ $(function() {
       }; // end if
   } //end populateFromAPI
 
+  function loadOptions (GF){
+    $.getJSON("/restaurants/database").done( function (restaurants) {
+        tempArr = [];
+        restaurants.forEach(function (restaurant) {
+            //console.log (restaurant.name)
+            if (restaurant.gf) {
+                tempArr.push (restaurant.address)
+            }
+        })
+        console.log(tempArr)
+    })
+  }
+
   var flipper = false
  $("#GF").click(function (){
     if (flipper === false) {
         // add map points
-        populateFromAPI()
+        //populateFromAPI()
+        loadOptions()
         // ajax call to path of my server which will query all the restrauts w/ gluten free in it
-        
+
 
         flipper = true
         return console.log("flipper is true")

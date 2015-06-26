@@ -122,6 +122,13 @@ app.get("/users", routeMiddleware.ensureLoggedIn, function (req, res) {
 
 //************************ RESTAURANTS ************************//
 
+app.get("/restaurants/database", function (req, res) {
+  db.Restaurant.find({}).populate("user").exec(function (err, restaurants) {
+    console.log (restaurants)
+    res.send(restaurants)
+  })
+})
+
 app.get('/restaurants/new', function (req,res){
   res.render('restaurants/new', {user_id:req.session.id});
 });
