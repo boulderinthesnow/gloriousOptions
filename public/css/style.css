@@ -1,5 +1,29 @@
-#map-canvas {
+html, body, #map-canvas {
 	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+#panel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -180px;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
+
+#rightPanel {
+  position: absolute;
+  top: 50%;
+  right: 1%;
+  margin-left: -180px;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
 }
 
 html, body {
@@ -22,7 +46,7 @@ html, body {
 #mainButtons {
 	width: 60%;
 	margin: 0px auto;
-	background-color: coral;
+	background-color: #fffff;
 	border-radius: 35%;
 	opacity: .25;
 	animation: fadeOut 1s;
@@ -46,21 +70,22 @@ html, body {
 
 
 #GF:hover {
-	background-color: red;
+	background-color: #d1203f;
 	border-radius: 20%;
 }
 
 #DF:hover {
-	background-color: red;
+	background-color: #2098d1;
 	border-radius: 20%;
 }
 
 #EF:hover {
-	background-color: red;
+	background-color: #d12098;
 	border-radius: 20%;
 }
 
 #SF:hover {
-	background-color: red;
+	background-color: #d1b220;
 	border-radius: 20%;
 }
+
