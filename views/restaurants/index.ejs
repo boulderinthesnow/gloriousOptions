@@ -1,5 +1,6 @@
 <% include ../partials/headerMap %>
 
+<!-- BUTTONS -->
 <div id="panel">
   <input onclick="clearMarkers();" type=button value="Hide Markers">
   <input onclick="showMarkers();" type=button value="Show All Markers">
@@ -28,22 +29,20 @@
   </div>
 </div>
 
+<!-- when click button, go through each rest running log options,--> 
+<!-- if logOptions returns GF, place on map  -->
 
 
 
-<!-- <form method="POST" action="/login" >
-  <input type="submit" value="LogOUT" class="btn btn-primary">
-</form> -->
-
-
-
-
-<div id="map-canvas"></div>
+<!-- MAP -->
+<div id="map-canvas"></div> 
 
 <a href="/logout">Logout</a>
 <br>
 <a href="/restaurants/new">Create a new restaurant</a>
 
+
+<!-- TABLE -->
 <table data-toggle="table" data-height="299" class="table table-striped table-hover">
 	<thead>
 		<tr>
@@ -84,6 +83,11 @@
 </table>
 <input type="hidden" name="allR" id="allR" value="<%=allR%>">
 
+
+
+<!-- going to use this to store all  -->
+<%var optionsObj = {gf:["a","b","c"],df:["b","c","d"]}%>
+<%console.log(optionsObj);%>
 
 
 <%function logOptions(restUser){  %>

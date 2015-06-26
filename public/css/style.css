@@ -22,8 +22,8 @@ html, body, #map-canvas {
 #panel:hover {
 	animation: fadeIn 1s;
 	opacity: 1;
-
 }
+
 
 #rightPanel {
   position: absolute;
