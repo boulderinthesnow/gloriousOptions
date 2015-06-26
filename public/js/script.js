@@ -13,29 +13,32 @@ $(function() {
 
     var allR = $("#allR").val();
     allR = allR.replace(/[ ]+/g, " ").trim().split("!");
-    for (var i = 0 ; i < allR.length -1 ; i++) {
-      var urlAddress = allR[i].replace(/[ ]+/g, "+").replace(/^,/, ''); //add pluses for address, remove starting ,
-      var urlAddressClear = urlAddress.replace(/,\+/g, ",") // replace ,+ with +
 
-      $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + urlAddress).done(function (data) {
-         var lat = (data.results[0].geometry.location.lat);
-         var long = (data.results[0].geometry.location.lng);
-         var address = data.results[0].formatted_address
-         console.log(lat, long, address)
-         var myLatlng = new google.maps.LatLng(lat,long);
+ function populateFromAPI (){
+        for (var i = 0 ; i < allR.length -1 ; i++) {
+          var urlAddress = allR[i].replace(/[ ]+/g, "+").replace(/^,/, ''); //add pluses for address, remove starting ,
+          var urlAddressClear = urlAddress.replace(/,\+/g, ",") // replace ,+ with +
 
-         new google.maps.Marker({
-             position: myLatlng,
-             map: map
+          $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + urlAddress).done(function (data) {
+             var lat = (data.results[0].geometry.location.lat);
+             var long = (data.results[0].geometry.location.lng);
+             var address = data.results[0].formatted_address
+             console.log(lat, long, address)
+             var myLatlng = new google.maps.LatLng(lat,long);
+
+             new google.maps.Marker({
+                 position: myLatlng,
+                 map: map
+             }); //end marker
          });
-     });
-
-  };
+      }; // end if
+  } //end populateFromAPI
 
   var flipper = false
  $("#GF").click(function (){
     if (flipper === false) {
         // add map points
+        populateFromAPI()
         flipper = true
         return console.log("flipper is true")
     }
