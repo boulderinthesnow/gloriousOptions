@@ -5,6 +5,10 @@ var restaurantSchema = new mongoose.Schema({
                     address: {type: String, required: true},
                     hours: {type: String, required: false},
                     cost: {type: String, required: false},
+                    gf: String,
+                    df: String,
+                    ef: String,
+                    sf: String,
                     user: {
                       type: mongoose.Schema.Types.ObjectId,
                       ref: "User"

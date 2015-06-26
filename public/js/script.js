@@ -39,6 +39,9 @@ $(function() {
     if (flipper === false) {
         // add map points
         populateFromAPI()
+        // ajax call to path of my server which will query all the restrauts w/ gluten free in it
+        
+
         flipper = true
         return console.log("flipper is true")
     }
