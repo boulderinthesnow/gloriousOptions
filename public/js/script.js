@@ -7,7 +7,7 @@ $(function() {
     center: myLatLong  
 }
 
-map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+map = new google.maps.Map($('#map-canvas')[0], myOptions);
 
 
 
