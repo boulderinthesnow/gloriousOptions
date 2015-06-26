@@ -27,6 +27,7 @@ html, body, #map-canvas {
 
 #rightPanel {
   position: absolute;
+  text-align: center;
   top: 50%;
   right: 1%;
   margin-left: -180px;
@@ -34,6 +35,15 @@ html, body, #map-canvas {
   background-color: #fff;
   padding: 5px;
   border: 1px solid #999;
+  border-radius: 5%;
+  opacity: .25;
+  animation: fadeOut 1s;
+}
+
+#rightPanel:hover {
+	animation: fadeIn 1s;
+	opacity: 1;
+
 }
 
 html, body {
