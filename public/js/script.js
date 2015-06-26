@@ -42,11 +42,25 @@ allR = allR.replace(/[ ]+/g, " ").trim().split("!");
 
   };
 
- gf = $("#GF").click(function(){
-    console.log(gf.val())
+ $("#GF").click(function(){
+    isChecked = $("#GF").is(':checked')
+    console.log("GF" + isChecked)
  })
- console.log(gf,"*********GF**********");
 
+ $("#DF").click(function(){
+    isChecked = $("#DF").is(':checked')
+    console.log(isChecked)
+ })
+
+ $("#EF").click(function(){
+    isChecked = $("#EF").is(':checked')
+    console.log(isChecked)
+ })
+
+ $("#SF").click(function(){
+    isChecked = $("#SF").is(':checked')
+    console.log(isChecked)
+ })
   
 
 

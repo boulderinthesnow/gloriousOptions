@@ -1,5 +1,5 @@
 #map-canvas {
-	height: 35%;
+	height: 50%;
 }
 
 html, body {
@@ -20,10 +20,47 @@ html, body {
 }
 
 #mainButtons {
-	width: 100%;
+	width: 60%;
 	margin: 0px auto;
+	background-color: coral;
+	border-radius: 35%;
+	opacity: .25;
+	animation: fadeOut 1s;
+
 }
 
-.eachButton {
-	border: none;
+#mainButtons:hover {
+	animation: fadeIn 1s;
+	opacity: 1;
+
+}
+
+@-webkit-keyframes fadeIn {
+  0%   { opacity: .25; }
+  100% { opacity: 1; }
+}
+@-webkit-keyframes fadeOut {
+  0%   { opacity: 1; }
+  100% { opacity: .25; }
+}
+
+
+#GF:hover {
+	background-color: red;
+	border-radius: 20%;
+}
+
+#DF:hover {
+	background-color: red;
+	border-radius: 20%;
+}
+
+#EF:hover {
+	background-color: red;
+	border-radius: 20%;
+}
+
+#SF:hover {
+	background-color: red;
+	border-radius: 20%;
 }
