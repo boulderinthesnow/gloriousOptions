@@ -144,6 +144,10 @@ $("#list").click(function() {
   return false;
 });
 
+$(function(){
+  $('#keywords').tablesorter(); 
+});
+
 
   // initialize();
 });
