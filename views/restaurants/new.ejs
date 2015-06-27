@@ -1,39 +1,39 @@
 <% include ../partials/header %>
+<div id="new-all">
+  <h1>NEW RESTUARANT</h1>
+   <form action="/restaurants/new" class="form-inline" method="POST">
+     <div class="form-group">
+       <input type="text" name="restaurant[name]" id="name" class="form-control" autofocus placeholder="name">
+     </div>   
+     <div class="form-group">
+       <input type="text" name="restaurant[address]" id="address" class="form-control" placeholder="address">
+     </div>   
+     <div class="form-group">
+       <input type="text" name="restaurant[hours]" id="hours" class="form-control" placeholder="hours">
+     </div>   
+     <div class="form-group">
+       <input type="text" name="restaurant[cost]" id="cost" class="form-control" placeholder="cost">
+     </div>    
+     <div class="form-group">
+       <input type="hidden" name="restaurant[user]" id="user" class="form-control" value="<%=user_id%>">
+     </div>    
 
-<h1>NEW RESTUARANT</h1>
- <form action="/restaurants/new" class="form-inline" method="POST">
-   <div class="form-group">
-     <input type="text" name="restaurant[name]" id="name" class="form-control" autofocus placeholder="name">
-   </div>   
-   <div class="form-group">
-     <input type="text" name="restaurant[address]" id="address" class="form-control" placeholder="address">
-   </div>   
-   <div class="form-group">
-     <input type="text" name="restaurant[hours]" id="hours" class="form-control" placeholder="hours">
-   </div>   
-   <div class="form-group">
-     <input type="text" name="restaurant[cost]" id="cost" class="form-control" placeholder="cost">
-   </div>    
-   <div class="form-group">
-     <input type="hidden" name="restaurant[user]" id="user" class="form-control" value="<%=user_id%>">
-   </div>    
 
+     <br>
+     <span class="form-group">
+       <label for="gf">Gluten Free</label>
+       <input type="checkbox" data-toggle="toggle" name="restaurant[gf]" id="gf" class="form-control">
+       <label for="df">Dairy Free</label>
+       <input type="checkbox" data-toggle="toggle" name="restaurant[df]" id="df" class="form-control">  
+       <label for="ef">Egg Free</label>
+       <input type="checkbox" data-toggle="toggle" name="restaurant[ef]" id="ef" class="form-control">
+       <label for="sf">Soy Free</label>
+       <input type="checkbox" data-toggle="toggle" name="restaurant[sf]" id="sf" class="form-control">  
+     </span>
+     <br>
 
-   <br>
-   <span class="form-group">
-     <label for="gf">Gluten Free</label>
-     <input type="checkbox" data-toggle="toggle" name="restaurant[gf]" id="gf" class="form-control">
-     <label for="df">Dairy Free</label>
-     <input type="checkbox" data-toggle="toggle" name="restaurant[df]" id="df" class="form-control">  
-     <label for="ef">Egg Free</label>
-     <input type="checkbox" data-toggle="toggle" name="restaurant[ef]" id="ef" class="form-control">
-     <label for="sf">Soy Free</label>
-     <input type="checkbox" data-toggle="toggle" name="restaurant[sf]" id="sf" class="form-control">  
-   </span>
-   <br>
-
-   <input type="submit" value="Create" class="btn btn-success">
- </form>
-
+     <input type="submit" value="Create" class="btn btn-success">
+   </form>
+ </div>
 <% include ../partials/footer %>
 

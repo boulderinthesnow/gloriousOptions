@@ -4,6 +4,7 @@
 <div id="panel">
   <input type="button" value="Add Restaurant" id="addRest">
   <input type="button" value="Log Out" id="logOut">
+  <input type="button" value="See List" id="list">
   <br>
   <div id="top">
 	  <span id="gf">GF</span>
@@ -75,11 +76,12 @@
 
 			<td><a href="/restaurants/<%=restaurant.id%>/edit"> edit restaurant</a></td>
 			<td><a href="/restaurants/<%=restaurant.id%>/comments/new"> add a comment</a> </td>
+
+			<td><%=restaurant.user.username%></td>
+			<td><a href="/restaurants/<%=restaurant.id%>/items"> See Items</a> </td>
 			<td><form action="/restaurants/<%=restaurant.id%>?_method=delete" method="POST">
 				<input type="submit" value="X" class="btn btn-danger btn-sm">
 			</form></td>
-			<td><%=restaurant.user.username%></td>
-			<td><a href="/restaurants/<%=restaurant.id%>/items"> See Items</a> </td>
 		</tr>
 		<% allR.push(restaurant.address + "!"); %>
 		<% }) %>

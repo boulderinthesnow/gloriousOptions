@@ -126,6 +126,10 @@ $("#logOut").click(function(){
 $("#addRest").click(function(){
     window.location.href='/restaurants/new';
 })
+$("#list").click(function(){
+    window.location.href='#table';
+})
+
 
 
   // initialize();
