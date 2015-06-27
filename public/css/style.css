@@ -24,7 +24,6 @@ html, body, #map-canvas {
 	opacity: 1;
 }
 
-
 #rightPanel {
   position: absolute;
   text-align: center;
@@ -89,10 +88,15 @@ html, body {
 }
 
 #new-window {
-	animation: fadeIn 1s;
+	animation: fadeInScale 1s;
 }
 
 @-webkit-keyframes fadeIn {
+  0%   { opacity: .25;}
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeInScale {
   0%   { opacity: .25; transform: scale(.5,.5);}
   100% { opacity: 1; }
 }

@@ -38,10 +38,6 @@
 <!-- MAP -->
 <div id="map-canvas"></div> 
 
-<a href="/logout">Logout</a>
-<br>
-<a href="/restaurants/new">Create a new restaurant</a>
-
 
 <!-- TABLE -->
 <a name="table"></a>
@@ -70,7 +66,7 @@
 		<tr>
 			<td><%=restaurant.name%></td>
 			<td><%=restaurant.address%></td>
-			<td><%=logOptions(restaurant.user)%></td>
+			<td><%=logOptions(restaurant)%></td>
 			<td><%=restaurant.hours%></td>
 			<td><%=restaurant.cost%></td>
 
