@@ -40,8 +40,8 @@ $(function() {
   function addMarker(location) {
     var marker = new google.maps.Marker({
       position: location,
-      map: map,
-      animation: google.maps.Animation.DROP
+      map: map
+      // animation: google.maps.Animation.DROP
     });
     markers.push(marker);
   }
@@ -53,18 +53,18 @@ $(function() {
     }
   }
 
-  function checkArrForDup(arr, lat, long){
+  function duplicateFound(arr, lat, long){
     for (var z = 0; z < arr.length; z++) {
         arrLat = arr[z].lat
         arrLong = arr[z].long
         if (arrLat === lat && arrLong === long){
             console.log ("DUP FOUND")
-            return false
+            return true
         }
     };
-    return true
+    return false
   }
-  var blackListArr = []
+  var pointsArr = []
   var markers = []
   function pointsOnMap (arrayOfAddresses) {
     for (var i = 0; i < arrayOfAddresses.length; i++) {
@@ -73,39 +73,23 @@ $(function() {
               var lat = (data.results[0].geometry.location.lat);
               var long = (data.results[0].geometry.location.lng);
               var address = data.results[0].formatted_address
-              blackListArr.push({lat:lat, long:long})
-              console.log(blackListArr)
+              if (!duplicateFound (pointsArr, lat, long)) {
+                pointsArr.push({lat:lat, long:long})
+                var myLatlng = new google.maps.LatLng(lat,long);
+                addMarker(myLatlng)  
+              } // END IF
+              console.log(pointsArr)
               console.log(lat, long, address)
-              var myLatlng = new google.maps.LatLng(lat,long);
-              console.log(lat,"*********LAT**********");
-              if (checkArrForDup (blackListArr, lat, long)) {
-
-                addMarker(myLatlng)
-              }
         });
-    }
-  }
+    } // END FOR LOOP
+  } // END FUNCTION 
 
-  function dupCheck (tempArr, restAddr){
-    // console.log(tempArr,"*********TEMPARR**********");
-    // console.log(restAddr,"*********RESTADDR**********");
-
-
-    for (var i = 0; i < tempArr.length; i++) {
-        if (tempArr[i] === restAddr) {
-            console.log(false)
-            return false;
-        };
-    };
-    return true;
-  }
-
-  function loadOptions (option){
+  function loadRestrictions (restrict){
         $.getJSON("/restaurants/database").done( function (restaurants) {
       var tempArr = [];  
-        // if (option === "GF") {
+        // if (restrict === "GF") {
             restaurants.forEach(function (restaurant) {
-                if (restaurant[option] && dupCheck(tempArr, restaurant.address)) {
+                if (restaurant[restrict]) {
                     tempArr.push(restaurant.address)
                 }
             })
@@ -121,25 +105,24 @@ $(function() {
   }
 
  $("#gf").click(function (){
-    var gfTemp = loadOptions("gf")
+    var gfTemp = loadRestrictions("gf")
  }) // end click 
 
  $("#df").click(function (){
-    var dfTemp = loadOptions("df")
+    var dfTemp = loadRestrictions("df")
  }) // end clic
 
  $("#gf").click(function (){
-    var efTemp = loadOptions("gf")
+    var efTemp = loadRestrictions("gf")
  }) // end clic
 
  $("#gf").click(function (){
-    var sfTemp = loadOptions("gf")
+    var sfTemp = loadRestrictions("gf")
  }) // end clic
 
   $("#clear").click(function (){
      clearMarkers();
-     markers = [];
-     console.log(markers)
+     // var pointsArr = []
   }) // end click 
 
 
