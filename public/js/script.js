@@ -126,10 +126,23 @@ $("#logOut").click(function(){
 $("#addRest").click(function(){
     window.location.href='/restaurants/new';
 })
-$("#list").click(function(){
-    window.location.href='#table';
-})
+// $("#list").click(function(){
+//     window.location.href='#table';
+// })
 
+// $("#back-to-top").click(function(){
+//     window.location.href='#top';
+// })
+
+$("#back-to-top").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  return false;
+});
+
+$("#list").click(function() {
+  $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+  return false;
+});
 
 
   // initialize();
