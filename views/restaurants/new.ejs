@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 <div id="new-window">
   <div id="new-all">
-    <h1>NEW RESTUARANT</h1>
+    <h1 id="new-restrict">NEW RESTUARANT</h1>
      <form action="/restaurants/new" class="form-inline" method="POST">
        <div class="form-group">
          <input type="text" name="restaurant[name]" id="name" class="form-control" autofocus placeholder="name">
@@ -34,7 +34,7 @@
          </span>
        </div>
        <br>
-
+        
        <input type="submit" value="Create" class="btn btn-success">
      </form>
    </div>
