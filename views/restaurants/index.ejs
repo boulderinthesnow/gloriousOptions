@@ -3,15 +3,15 @@
 <!-- BUTTONS -->
 <div id="panel">
   <input type="button" value="Add Restaurant" id="addRest">
-  <input type="button" value="Log Out" id="logOut">
-  <input type="button" value="See List" id="list">
+  <input type="button"  value="Log Out" id="logOut">
+  <input type="button"  value="See List" id="list">
   <br>
   <div id="top">
-	  <span id="gf">GF</span>
-	  <span id="df">DF</span>
-	  <span id="ef">EF</span>
-	  <span id="sf">SF</span>
-	  <span id="clear">clear</span>
+	  <span id="gf" class="hvr-shutter-in-vertical">GF</span>
+	  <span id="df" class="hvr-shutter-in-vertical">DF</span>
+	  <span id="ef" class="hvr-shutter-in-vertical">EF</span>
+	  <span id="sf" class="hvr-shutter-in-vertical">SF</span>
+	  <span id="clear" class="hvr-shutter-in-vertical">CLEAR</span>
   </div>
 </div>
 
@@ -41,18 +41,18 @@
 
 <!-- TABLE -->
 <a name="table"></a>
-<table data-toggle="table" data-height="299" class="table table-striped table-hover">
+<table data-toggle="table" data-height="299" data-sort-name="name" data-sort-order="desc" class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<th data-field="name">Name</th>
-			<th data-field="address">Address</th>
-			<th data-field="options">Options</th>
-			<th data-field="hours">Hours</th>
-			<th data-field="costs">Costs</th>
-			<th data-field="edit">Edit</th>
-			<th data-field="comment">Add a Comment</th>
-			<th data-field="user">Created By</th>
-			<th data-field="items">Items</th>
+			<th data-field="name" data-sortable="true">Name</th>
+			<th data-field="address" data-sortable="true">Address</th>
+			<th data-field="options" data-sortable="true">Options</th>
+			<th data-field="hours" data-sortable="true">Hours</th>
+			<th data-field="costs" data-sortable="true">Costs</th>
+			<th data-field="edit" data-sortable="true">Edit</th>
+			<th data-field="comment" data-sortable="true">Add a Comment</th>
+			<th data-field="user" data-sortable="true">Created By</th>
+			<th data-field="items" data-sortable="true">Items</th>
 		</tr>
 	</thead>
 	<tbody>
