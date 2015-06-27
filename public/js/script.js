@@ -14,34 +14,13 @@ $(function() {
     var allR = $("#allR").val();
     console.log(allR,"*********ALLR**********");
 
-    
-  //   function populateFromAPI (){
-  //       allR = allR.replace(/[ ]+/g, " ").trim().split("!");
-  //       for (var i = 0 ; i < allR.length -1 ; i++) {
-  //         var urlAddress = allR[i].replace(/[ ]+/g, "+").replace(/^,/, ''); //add pluses for address, remove starting ,
-  //         var urlAddressClear = urlAddress.replace(/,\+/g, ",") // replace ,+ with +
-
-  //     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + urlAddress).done(function (data) {
-  //      var lat = (data.results[0].geometry.location.lat);
-  //      var long = (data.results[0].geometry.location.lng);
-  //      var address = data.results[0].formatted_address
-  //      console.log(lat, long, address)
-  //      var myLatlng = new google.maps.LatLng(lat,long);
-
-  //       new google.maps.Marker({
-  //              position: myLatlng,
-  //              map: map
-  //       }); //end marker
-  //      }); //end function
-  //     }; // end if
-  // } //end populateFromAPI
 
   // Add a marker to the map and push to the array.
   function addMarker(location) {
     var marker = new google.maps.Marker({
       position: location,
-      map: map
-      // animation: google.maps.Animation.DROP
+      map: map,
+      animation: google.maps.Animation.DROP
     });
     markers.push(marker);
   }
@@ -53,6 +32,7 @@ $(function() {
     }
   }
 
+// search arr for dups
   function duplicateFound(arr, lat, long){
     for (var z = 0; z < arr.length; z++) {
         arrLat = arr[z].lat
@@ -64,8 +44,10 @@ $(function() {
     };
     return false
   }
+
   var pointsArr = []
   var markers = []
+  // ajax call with address field, get geometry
   function pointsOnMap (arrayOfAddresses) {
     for (var i = 0; i < arrayOfAddresses.length; i++) {
         var urlAddress = arrayOfAddresses[i]
@@ -73,9 +55,14 @@ $(function() {
               var lat = (data.results[0].geometry.location.lat);
               var long = (data.results[0].geometry.location.lng);
               var address = data.results[0].formatted_address
-              if (!duplicateFound (pointsArr, lat, long)) {
+              console.log("0000000000000")
+
+
+
+              if (!duplicateFound (pointsArr, lat, long) || markers.length === 0) {
                 pointsArr.push({lat:lat, long:long})
                 var myLatlng = new google.maps.LatLng(lat,long);
+                console.log("1111111111111111")
                 addMarker(myLatlng)  
               } // END IF
               console.log(pointsArr)
@@ -101,6 +88,8 @@ $(function() {
   }
 
   function clearMarkers() {
+    var pointsArr = []
+    var markers = []
     setAllMap(null);
   }
 
