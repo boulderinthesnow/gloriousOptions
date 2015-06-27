@@ -79,8 +79,21 @@ html, body {
 
 }
 
+#new-window {
+	width: 80%;
+	margin: 0px auto;
+}
+
+#new-restrict {
+	text-align: center
+}
+
+#new-window {
+	animation: fadeIn 1s;
+}
+
 @-webkit-keyframes fadeIn {
-  0%   { opacity: .25; }
+  0%   { opacity: .25; transform: scale(.5,.5);}
   100% { opacity: 1; }
 }
 @-webkit-keyframes fadeOut {
@@ -108,4 +121,5 @@ html, body {
 	background-color: #d1b220;
 	border-radius: 20%;
 }
+
 
