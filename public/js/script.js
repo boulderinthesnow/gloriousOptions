@@ -90,41 +90,15 @@ $(function() {
     setAllMap(null);
   }
 
-  var flipper = false
-
  $("#GF").click(function (){
-    console.log("foo")
-    if (flipper === false) {
-        // add map points
-        //populateFromAPI()
-        var gfTemp = loadOptions("gf")
+    var gfTemp = loadOptions("gf")
+ }) // end click 
 
-        flipper = true
-        return console.log("flipper is true")
-    }
-    if (flipper === true) {
-        // remove map points
-        clearMarkers()
-        flipper = false
-        return console.log("flipper is false")
-    }
- })
 
- // $("#DF").click(function(){
- //    isChecked = $("#DF").is(':checked')
- //    console.log(isChecked)
- // })
-
- // $("#EF").click(function(){
- //    isChecked = $("#EF").is(':checked')
- //    console.log(isChecked)
- // })
-
- // $("#SF").click(function(){
- //    isChecked = $("#SF").is(':checked')
- //    console.log(isChecked)
- // })
-  
+  $("#CLEAR").click(function (){
+     var gfTemp = loadOptions("gf")
+     clearMarkers()
+  }) // end click 
 
 
 

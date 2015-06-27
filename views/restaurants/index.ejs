@@ -58,31 +58,19 @@
 		</tr>
 	</thead>
 	<tbody>
-<!-- 		<% var allR = []; %>
+	    <% var allR = []; %>
 		<% gfArr = [];%>
 		<% dfArr = [];%>
 		<% efArr = [];%>
 		<% sfArr = [];%>
 
 		<% restaurants.forEach(function (restaurant){ %>
-			<%= tempLog = logOptions(restaurant.user) %>
-			<%= console.log (tempLog) %>
-
-			<% tempLog.forEach(function (option) { %>
-				<%if (option === "GF") {%>
-				<%gfArr.push({id: restaurant.id, name: restaurant.name, addr: restaurant.address })%>
-				<%}%>
-			<% }) %>
-			<%= console.log(gfArr) %> -->
-
 		<tr>
 			<td><%=restaurant.name%></td>
 			<td><%=restaurant.address%></td>
 			<td><%=logOptions(restaurant.user)%></td>
 			<td><%=restaurant.hours%></td>
 			<td><%=restaurant.cost%></td>
-
-
 
 			<td><a href="/restaurants/<%=restaurant.id%>/edit"> edit restaurant</a></td>
 			<td><a href="/restaurants/<%=restaurant.id%>/comments/new"> add a comment</a> </td>
