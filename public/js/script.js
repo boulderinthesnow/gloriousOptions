@@ -15,27 +15,37 @@ $(function() {
     console.log(allR,"*********ALLR**********");
 
     
-    function populateFromAPI (){
-        allR = allR.replace(/[ ]+/g, " ").trim().split("!");
-        for (var i = 0 ; i < allR.length -1 ; i++) {
-          var urlAddress = allR[i].replace(/[ ]+/g, "+").replace(/^,/, ''); //add pluses for address, remove starting ,
-          var urlAddressClear = urlAddress.replace(/,\+/g, ",") // replace ,+ with +
+  //   function populateFromAPI (){
+  //       allR = allR.replace(/[ ]+/g, " ").trim().split("!");
+  //       for (var i = 0 ; i < allR.length -1 ; i++) {
+  //         var urlAddress = allR[i].replace(/[ ]+/g, "+").replace(/^,/, ''); //add pluses for address, remove starting ,
+  //         var urlAddressClear = urlAddress.replace(/,\+/g, ",") // replace ,+ with +
 
-      $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + urlAddress).done(function (data) {
-       var lat = (data.results[0].geometry.location.lat);
-       var long = (data.results[0].geometry.location.lng);
-       var address = data.results[0].formatted_address
-       console.log(lat, long, address)
-       var myLatlng = new google.maps.LatLng(lat,long);
+  //     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=" + urlAddress).done(function (data) {
+  //      var lat = (data.results[0].geometry.location.lat);
+  //      var long = (data.results[0].geometry.location.lng);
+  //      var address = data.results[0].formatted_address
+  //      console.log(lat, long, address)
+  //      var myLatlng = new google.maps.LatLng(lat,long);
 
-        new google.maps.Marker({
-               position: myLatlng,
-               map: map
-        }); //end marker
-       }); //end function
-      }; // end if
-  } //end populateFromAPI
+  //       new google.maps.Marker({
+  //              position: myLatlng,
+  //              map: map
+  //       }); //end marker
+  //      }); //end function
+  //     }; // end if
+  // } //end populateFromAPI
 
+  // Add a marker to the map and push to the array.
+  function addMarker(location) {
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+    markers.push(marker);
+  }
+
+  var markers = []
   function pointsOnMap (arrayOfAddresses) {
     for (var i = 0; i < arrayOfAddresses.length; i++) {
         var urlAddress = arrayOfAddresses[i]
@@ -44,6 +54,8 @@ $(function() {
               var long = (data.results[0].geometry.location.lng);
               var address = data.results[0].formatted_address
               console.log(lat, long, address)
+              var myLatlng = new google.maps.LatLng(lat,long);
+              addMarker(myLatlng)
         });
     }
   }
@@ -66,6 +78,10 @@ $(function() {
     })
   }
 
+  function clearMarkers() {
+    setAllMap(null);
+  }
+
   var flipper = false
 
  $("#GF").click(function (){
@@ -74,15 +90,13 @@ $(function() {
         // add map points
         //populateFromAPI()
         var gfTemp = loadOptions("gf")
-        // console.log (loadOptions("gf"), "YTIUEHOEOBEIEJBKJEBHIJB")
-        
-        // ajax call to path of my server which will query all the restrauts w/ gluten free in it
 
         flipper = true
         return console.log("flipper is true")
     }
     if (flipper === true) {
         // remove map points
+        clearMarkers()
         flipper = false
         return console.log("flipper is false")
     }
