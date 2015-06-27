@@ -45,8 +45,13 @@ $(function() {
     return false
   }
 
-  var pointsArr = []
-  var markers = []
+  function randMillsec(){
+    randNum = Math.floor(Math.random()*5000)+1
+    console.log(randNum)
+  }
+
+   pointsArr = []
+   markers = []
   // ajax call with address field, get geometry
   function pointsOnMap (arrayOfAddresses) {
     for (var i = 0; i < arrayOfAddresses.length; i++) {
@@ -55,15 +60,14 @@ $(function() {
               var lat = (data.results[0].geometry.location.lat);
               var long = (data.results[0].geometry.location.lng);
               var address = data.results[0].formatted_address
-              console.log("0000000000000")
-
-
 
               if (!duplicateFound (pointsArr, lat, long) || markers.length === 0) {
                 pointsArr.push({lat:lat, long:long})
                 var myLatlng = new google.maps.LatLng(lat,long);
-                console.log("1111111111111111")
-                addMarker(myLatlng)  
+                window.setTimeout(function() {
+                    addMarker(myLatlng)  
+                    console.log (randMillsec())
+                }, randMillsec());
               } // END IF
               console.log(pointsArr)
               console.log(lat, long, address)
@@ -88,9 +92,10 @@ $(function() {
   }
 
   function clearMarkers() {
+    setAllMap(null);
     var pointsArr = []
     var markers = []
-    setAllMap(null);
+  
   }
 
  $("#gf").click(function (){
@@ -115,7 +120,12 @@ $(function() {
   }) // end click 
 
 
-
+$("#logOut").click(function(){
+    window.location.href='/logout';
+})
+$("#addRest").click(function(){
+    window.location.href='/restaurants/new';
+})
 
 
   // initialize();
