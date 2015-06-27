@@ -89,22 +89,22 @@ html, body {
 }
 
 
-#GF:hover {
+#gf:hover {
 	background-color: #d1203f;
 	border-radius: 20%;
 }
 
-#DF:hover {
+#df:hover {
 	background-color: #2098d1;
 	border-radius: 20%;
 }
 
-#EF:hover {
+#ef:hover {
 	background-color: #d12098;
 	border-radius: 20%;
 }
 
-#SF:hover {
+#sf:hover {
 	background-color: #d1b220;
 	border-radius: 20%;
 }

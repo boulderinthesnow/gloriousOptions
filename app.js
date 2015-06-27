@@ -59,7 +59,7 @@ app.post("/login", function (req, res) {
   	console.log(user, "USER")
     if (!err && user !== null) {
       req.login(user);
-      res.redirect("/users");
+      res.redirect("/restaurants/");
     } else {
       // TODO - handle errors in ejs!
       res.render("users/login");

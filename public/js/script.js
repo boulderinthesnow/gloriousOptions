@@ -40,7 +40,8 @@ $(function() {
   function addMarker(location) {
     var marker = new google.maps.Marker({
       position: location,
-      map: map
+      map: map,
+      animation: google.maps.Animation.DROP
     });
     markers.push(marker);
   }
@@ -52,7 +53,18 @@ $(function() {
     }
   }
 
-
+  function checkArrForDup(arr, lat, long){
+    for (var z = 0; z < arr.length; z++) {
+        arrLat = arr[z].lat
+        arrLong = arr[z].long
+        if (arrLat === lat && arrLong === long){
+            console.log ("DUP FOUND")
+            return false
+        }
+    };
+    return true
+  }
+  var blackListArr = []
   var markers = []
   function pointsOnMap (arrayOfAddresses) {
     for (var i = 0; i < arrayOfAddresses.length; i++) {
@@ -61,25 +73,43 @@ $(function() {
               var lat = (data.results[0].geometry.location.lat);
               var long = (data.results[0].geometry.location.lng);
               var address = data.results[0].formatted_address
+              blackListArr.push({lat:lat, long:long})
+              console.log(blackListArr)
               console.log(lat, long, address)
               var myLatlng = new google.maps.LatLng(lat,long);
-              addMarker(myLatlng)
+              console.log(lat,"*********LAT**********");
+              if (checkArrForDup (blackListArr, lat, long)) {
+
+                addMarker(myLatlng)
+              }
         });
     }
   }
 
+  function dupCheck (tempArr, restAddr){
+    // console.log(tempArr,"*********TEMPARR**********");
+    // console.log(restAddr,"*********RESTADDR**********");
+
+
+    for (var i = 0; i < tempArr.length; i++) {
+        if (tempArr[i] === restAddr) {
+            console.log(false)
+            return false;
+        };
+    };
+    return true;
+  }
+
   function loadOptions (option){
-    var tempArr = [];
         $.getJSON("/restaurants/database").done( function (restaurants) {
-        
+      var tempArr = [];  
         // if (option === "GF") {
             restaurants.forEach(function (restaurant) {
-                if (restaurant[option]) {
+                if (restaurant[option] && dupCheck(tempArr, restaurant.address)) {
                     tempArr.push(restaurant.address)
                 }
             })
-
-        // console.log(tempArr, "TEMPARR")
+            console.log(tempArr.length)
         pointsOnMap (tempArr)
     }).fail(function(err){
         console.log("SOMETHING WENT WRONG!", err.responseText);
@@ -90,14 +120,26 @@ $(function() {
     setAllMap(null);
   }
 
- $("#GF").click(function (){
+ $("#gf").click(function (){
     var gfTemp = loadOptions("gf")
  }) // end click 
 
+ $("#df").click(function (){
+    var dfTemp = loadOptions("df")
+ }) // end clic
 
-  $("#CLEAR").click(function (){
-     var gfTemp = loadOptions("gf")
-     clearMarkers()
+ $("#gf").click(function (){
+    var efTemp = loadOptions("gf")
+ }) // end clic
+
+ $("#gf").click(function (){
+    var sfTemp = loadOptions("gf")
+ }) // end clic
+
+  $("#clear").click(function (){
+     clearMarkers();
+     markers = [];
+     console.log(markers)
   }) // end click 
 
 
