@@ -53,6 +53,16 @@ html, body {
 	 text-align: center;
 }
 
+.bottom-area {
+	 left:50%;
+	 width:200px;
+	 bottom:5px;
+}
+
+.entire {
+	width: 100%;
+}
+
 #mainButtons {
 	width: 60%;
 	margin: 0px auto;
@@ -96,6 +106,20 @@ html, body {
 @-webkit-keyframes fadeOut {
   0%   { opacity: 1; }
   100% { opacity: .25; }
+}
+
+back-to-top {
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	margin-left: -200px;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+	background-color: #fffff;
+	border-radius: 5%;
+	opacity: .25;
 }
 
 
