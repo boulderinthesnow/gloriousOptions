@@ -2,34 +2,24 @@
 
 <!-- BUTTONS -->
 <div id="panel">
-<a name="top"></a>
-  <input type="button" value="Add Restaurant" id="addRest">
-  <input type="button"  value="Log Out" id="logOut">
-  <input type="button"  value="See List" id="list">
-  <br>
-  <div id="top">
-	  <span id="gf" class="hvr-shutter-in-vertical">GF</span>
-	  <span id="df" class="hvr-shutter-in-vertical">DF</span>
-	  <span id="ef" class="hvr-shutter-in-vertical">EF</span>
-	  <span id="sf" class="hvr-shutter-in-vertical">SF</span>
-	  <span id="clear" class="hvr-shutter-in-vertical">CLEAR</span>
-  </div>
+	<a name="top"></a>
+	<div id="top-buttons">
+	  <input type="button" class="button" value="Add Restaurant" id="addRest">
+	  <input type="button" class="button" value="See List" id="list" class="hvr-sweep-to-right">
+	  <input type="button" class="button" value="Log Out" id="logOut">
+	  
+	  </div>
+	  <br>
+
+	  <div id="top">
+		  <span id="gf" class="hvr-shutter-in-vertical">GF</span>
+		  <span id="df" class="hvr-shutter-in-vertical">DF</span>
+		  <span id="ef" class="hvr-shutter-in-vertical">EF</span>
+		  <span id="sf" class="hvr-shutter-in-vertical">SF</span>
+		  <span id="clear" class="hvr-shutter-in-vertical">CLEAR</span>
+	  </div>
 </div>
 
-<div id="rightPanel">
-  <input onclick="clearMarkers();" type=button value="Hide Markers">
-  <br>
-  <input onclick="showMarkers();" type=button value="Show All Markers">
-  <br>
-  <input onclick="deleteMarkers();" type=button value="Delete Markers">
-  <br>
-  <div id="top">
-	  <span id="GF">GF</span>
-	  <span id="DF">DF</span>
-	  <span id="EF">EF</span>
-	  <span id="SF">SF</span>
-  </div>
-</div>
 
 <!-- when click button, go through each rest running log options,--> 
 <!-- if logOptions returns GF, place on map  -->
@@ -39,10 +29,9 @@
 <!-- MAP -->
 <div id="map-canvas"></div> 
 
-
+	<a name="table"></a>
 <!-- TABLE -->
 <div id="wrapper">
-	<a name="table"></a>
 	<h1>Sortable Table of Search Queries</h1>
 	<table id="keywords" cellspacing="0" cellpadding="0" class="table table-striped table-hover">
 		<thead>
@@ -118,8 +107,9 @@
 
 <%}  %> <!- end logOptions->
 
-<input type="button" value="BACK TO TOP" id="back-to-top">
-
+<div class="center" >
+	<input type="button" class="button" value="BACK TO TOP" id="back-to-top">
+</div>
 
 
 <% include ../partials/footer %>
