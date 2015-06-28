@@ -47,10 +47,9 @@ html, body {
 }
 
 .center {
-	margin-left: 35%;
-	margin-bottom: 10px;
-	text-align: center;
-	font-size: 15px;
+	display: block;
+	 margin-left: auto;
+	 margin-right: auto 
 }
 
 #mainButtons {
@@ -131,6 +130,7 @@ html, body {
 	border-radius: 20%;
 	color: white;
 }
+
 
 /* Shutter In Vertical */
 .hvr-shutter-in-vertical {
