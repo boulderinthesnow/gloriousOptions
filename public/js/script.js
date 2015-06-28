@@ -106,12 +106,12 @@ $(function() {
     var dfTemp = loadRestrictions("df")
  }) // end clic
 
- $("#gf").click(function (){
-    var efTemp = loadRestrictions("gf")
+ $("#ef").click(function (){
+    var efTemp = loadRestrictions("ef")
  }) // end clic
 
- $("#gf").click(function (){
-    var sfTemp = loadRestrictions("gf")
+ $("#sf").click(function (){
+    var sfTemp = loadRestrictions("sf")
  }) // end clic
 
   $("#clear").click(function (){
