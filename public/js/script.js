@@ -61,14 +61,14 @@ $(function() {
               var long = (data.results[0].geometry.location.lng);
               var address = data.results[0].formatted_address
 
-              if (!duplicateFound (pointsArr, lat, long) || markers.length === 0) {
+              // if (!duplicateFound (pointsArr, lat, long) || markers.length === 0) {
                 pointsArr.push({lat:lat, long:long})
                 var myLatlng = new google.maps.LatLng(lat,long);
                 window.setTimeout(function() {
                     addMarker(myLatlng)  
                     console.log (randMillsec())
                 }, randMillsec());
-              } // END IF
+              // } // END IF
               console.log(pointsArr)
               console.log(lat, long, address)
         });
@@ -78,14 +78,18 @@ $(function() {
   function loadRestrictions (restrict){
         $.getJSON("/restaurants/database").done( function (restaurants) {
       var tempArr = [];  
-        // if (restrict === "GF") {
-            restaurants.forEach(function (restaurant) {
-                if (restaurant[restrict]) {
-                    tempArr.push(restaurant.address)
-                }
-            })
-            console.log(tempArr.length)
-        pointsOnMap (tempArr)
+            // restaurants.forEach(function (restaurant) {
+            //     if (restaurant[restrict]) {
+            //         tempArr.push(restaurant.address)
+            //     }
+            // })
+
+        for (var q = 0; q < restaurants.length; q++) {
+               if (restaurants[q][restrict]) {
+                    tempArr.push(restaurants[q].address)
+               }
+        };
+        pointsOnMap (tempArr) 
     }).fail(function(err){
         console.log("SOMETHING WENT WRONG!", err.responseText);
     })
