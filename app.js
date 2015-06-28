@@ -39,7 +39,7 @@ app.post("/signup", function (req, res) {
   db.User.create(newUser, function (err, user) {
     if (user) {
       req.login(user);
-      res.redirect("/users");
+      res.redirect("/restaurants");
     } else {
       console.log(err);
       // TODO - handle errors in ejs!

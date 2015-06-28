@@ -1,20 +1,26 @@
 <% include ../partials/header %>
-
-<h1>NEW RESTUARANT</h1>
- <form action="/restaurants/<%=restaurant.id%>?_method=PUT" class="form-inline" method="POST">
-   <div class="form-group">
-     <input type="text" name="restaurant[name]" id="name" class="form-control" autofocus value="<%=restaurant.name%>">
-   </div>   
-   <div class="form-group">
-     <input type="text" name="restaurant[address]" id="address" class="form-control" value="<%=restaurant.address%>">
-   </div>   
-   <div class="form-group">
-     <input type="text" name="restaurant[hours]" id="hours" class="form-control" value="<%=restaurant.hours%>">
-   </div>   
-   <div class="form-group">
-     <input type="text" name="restaurant[cost]" id="cost" class="form-control" value="<%=restaurant.cost%>">
-   </div>   
-   <input type="submit" value="Update" class="btn btn-success">
- </form>
+<div id="new-window">
+  <div id="new-all">
+    <h1>NEW RESTUARANT</h1>
+     <form action="/restaurants/<%=restaurant.id%>?_method=PUT" class="form-inline" method="POST" >
+       <div class="form-group">
+         <input type="text" name="restaurant[name]" id="name" class="form-control" autofocus value="<%=restaurant.name%>">
+       </div>   
+       <div class="form-group">
+         <input type="text" name="restaurant[address]" id="address" class="form-control" value="<%=restaurant.address%>">
+       </div>   
+       <div class="form-group">
+         <input type="text" name="restaurant[hours]" id="hours" class="form-control" value="<%=restaurant.hours%>">
+       </div>   
+       <div class="form-group">
+         <input type="text" name="restaurant[cost]" id="cost" class="form-control" value="<%=restaurant.cost%>">
+       </div>   
+      <div >
+      <br>
+       <input type="submit" value="Update" class="btn btn-success center">
+      </div>
+     </form>
+  </div>
+</div>
 
 <% include ../partials/footer %>
