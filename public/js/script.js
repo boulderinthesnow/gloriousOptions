@@ -18,8 +18,8 @@ $(function() {
 
   function changeButtonText(){
     window.setTimeout(function() {
-      $("#myLocation").val("Finding You......");
-      }, 500)
+      $("#myLocation").val("Finding You.......");
+      }, 100)
     $("#myLocation").addClass('fade')
   }
 
