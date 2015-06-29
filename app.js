@@ -10,11 +10,14 @@ var express = require('express'),
     bcrypt = require("bcrypt"),
     SALT_WORK_FACTOR = 10;
 
+    var favicon = require("serve-favicon");
+
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 app.use(morgan('tiny'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.use(session ({
   maxAge: 3600000,
