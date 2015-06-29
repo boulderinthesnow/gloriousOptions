@@ -1,27 +1,33 @@
 $(function() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success);
-  } else {
-    error('Geo Location is not supported');
+
+  function getLocation() {
+    if ("geolocation" in navigator) {
+     navigator.geolocation.getCurrentPosition(function (position) {
+       console.log(position.coords.latitude, position.coords.longitude);
+     });
+    } else {
+      // no native support; maybe try a fallback?
+    }
   }
 
-  navigator.geolocation.getCurrentPosition(success);
+  // navigator.geolocation.getCurrentPosition(success);
 
-  function success(position) {
-       var lat = position.coords.latitude;
-       var long = position.coords.longitude;
-  }
+  // function success(position) {
+  //   var lat = position.coords.latitude;
+  //   var long = position.coords.longitude;
+  //   var coords = new google.maps.LatLng(lat, long);
+  //   return coords
+  // }
 
-  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-
+  
 
   var map;
-  //var myLatLong = new google.maps.LatLng(37.7854224, -122.403726)
+  var myLatLong = new google.maps.LatLng(37.7854224, -122.403726)
+  //var myExactLatLong = new google.maps.LatLng(37.7854224, -122.403726)
 
   var myOptions = {
     zoom: 13,
-    center: coords;  
+    center: myLatLong  
 }
 
     map = new google.maps.Map($('#map-canvas')[0], myOptions);
@@ -146,6 +152,9 @@ $("#logOut").click(function(){
 })
 $("#addRest").click(function(){
     window.location.href='/restaurants/new';
+})
+$("#myLocation").click(function(){
+  getLocation()  
 })
 // $("#list").click(function(){
 //     window.location.href='#table';
