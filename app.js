@@ -24,7 +24,7 @@ app.use(session ({
 
 app.use(loginMiddleware);
 
-//************************ USER ************************//
+//************************ USER *************************//
 
 app.get('/', routeMiddleware.ensureLoggedIn, function (req,res){
   res.redirect('/users');
