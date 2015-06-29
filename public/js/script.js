@@ -1,10 +1,27 @@
 $(function() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success);
+  } else {
+    error('Geo Location is not supported');
+  }
+
+  navigator.geolocation.getCurrentPosition(success);
+
+  function success(position) {
+       var lat = position.coords.latitude;
+       var long = position.coords.longitude;
+  }
+
+  var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+
+
   var map;
-  var myLatLong = new google.maps.LatLng(37.7854224, -122.403726)
+  //var myLatLong = new google.maps.LatLng(37.7854224, -122.403726)
 
   var myOptions = {
     zoom: 13,
-    center: myLatLong  
+    center: coords;  
 }
 
     map = new google.maps.Map($('#map-canvas')[0], myOptions);
