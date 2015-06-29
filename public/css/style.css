@@ -12,7 +12,7 @@ html, body, #map-canvas {
   position: absolute;
   top: 5px;
   left: 50%;
-  margin-left: -200px;
+  margin-left: -310px;
   z-index: 5;
   background-color: #fff;
   padding: 5px;
@@ -108,6 +108,21 @@ html, body {
   100% { opacity: .25; }
 }
 
+.fade {
+  -webkit-animation: fadeInOut 1s;
+  -o-animation: fadeInOut 1s;
+  animation: fadeInOut 1s;
+  -webkit-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes fadeInOut {
+  0%   { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 back-to-top {
 	position: absolute;
 	top: 5px;
@@ -198,6 +213,8 @@ back-to-top {
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
 }
+
+
 
 
 

@@ -1,13 +1,26 @@
 $(function() {
 
+  // add my location to the map using HTML 5
   function getLocation() {
     if ("geolocation" in navigator) {
+        changeButtonText();
      navigator.geolocation.getCurrentPosition(function (position) {
        console.log(position.coords.latitude, position.coords.longitude);
+       myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+       addMarker(myLatLong) 
+        $("#myLocation").val("Found You!");   
+        $("#myLocation").removeClass('fade')
      });
     } else {
       // no native support; maybe try a fallback?
     }
+  }
+
+  function changeButtonText(){
+    window.setTimeout(function() {
+      $("#myLocation").val("Finding You......");
+      }, 500)
+    $("#myLocation").addClass('fade')
   }
 
   // navigator.geolocation.getCurrentPosition(success);
@@ -154,6 +167,7 @@ $("#addRest").click(function(){
     window.location.href='/restaurants/new';
 })
 $("#myLocation").click(function(){
+  // $("#myLocation").val("Finding You......")
   getLocation()  
 })
 // $("#list").click(function(){
