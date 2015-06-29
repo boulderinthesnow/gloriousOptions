@@ -7,12 +7,14 @@ $(function() {
      navigator.geolocation.getCurrentPosition(function (position) {
        console.log(position.coords.latitude, position.coords.longitude);
        myLatLong = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-       addMarker(myLatLong) 
+       addMarkerUserLoc(myLatLong) 
         $("#myLocation").val("Found You!");   
         $("#myLocation").removeClass('fade')
      });
     } else {
       // no native support; maybe try a fallback?
+      $("#myLocation").val("Find Failed :(");   
+      $("#myLocation").removeClass('fade')
     }
   }
 
@@ -56,6 +58,17 @@ $(function() {
     var marker = new google.maps.Marker({
       position: location,
       map: map,
+      animation: google.maps.Animation.DROP
+    });
+    markers.push(marker);
+  }
+    // Add a marker to the map at user location and push to the array.
+  function addMarkerUserLoc(location) {
+    var image = '/images/marker-youAreHere.png';
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      icon: image,
       animation: google.maps.Animation.DROP
     });
     markers.push(marker);

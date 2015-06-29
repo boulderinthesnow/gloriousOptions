@@ -26,6 +26,7 @@ html, body, #map-canvas {
 #panel:hover {
 	animation: fadeIn 1s;
 	opacity: 1;
+
 }
 
 
@@ -40,8 +41,8 @@ html, body {
 }
 
 #top {
-	margin-left: 25%;
-	margin-right: 25%;
+	margin-left: 5%;
+	margin-right: 5%;
 	text-align: center;
 	font-size: 15px;
 }
@@ -406,7 +407,7 @@ h1 {
   margin: 0 1em 1em 0;
   padding: 0 4em;
   height: 3.5em;
-  font: 300 1em/3.5em 'Open Sans', sans-serif;
+  font: 500 1em/3.5em 'Open Sans', sans-serif;
   text-decoration: none;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   letter-spacing: .08em;
@@ -421,7 +422,7 @@ h1 {
 }
 .button:hover,
 [class*="button-"]:hover {
-  background: #007DA7;
+  background: black;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5) inset;
 }
 
