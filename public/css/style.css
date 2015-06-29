@@ -371,6 +371,7 @@ body {
   padding: 1em;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background: #eee;
+  text-align: center;
 }
 
 h1 {
@@ -385,7 +386,6 @@ h1 {
   position: relative;
   display: inline-block;
   overflow: hidden;
-  float: left;
   margin: 0 1em 1em 0;
   padding: 0 4em;
   height: 3.5em;
