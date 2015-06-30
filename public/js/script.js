@@ -54,13 +54,8 @@ $(function() {
 
     map = new google.maps.Map($('#map-canvas')[0], myOptions);
 
-
-
     var allR = $("#allR").val();
     console.log(allR,"*********ALLR**********");
-
-
-
 
   // Add a marker to the map and push to the array.
   function addMarker(location) {
@@ -134,32 +129,25 @@ $(function() {
     } // END FOR LOOP
   } // END FUNCTION 
 
-  function loadRestrictions (restrict){
+  function loadRestrictions (restrict) {
         $.getJSON("/restaurants/database").done( function (restaurants) {
       var tempArr = [];  
-            // restaurants.forEach(function (restaurant) {
-            //     if (restaurant[restrict]) {
-            //         tempArr.push(restaurant.address)
-            //     }
-            // })
-
         for (var q = 0; q < restaurants.length; q++) {
                if (restaurants[q][restrict]) {
                     tempArr.push(restaurants[q].address)
-               }
-        };
+               } // END IF
+        }; // END FOR LOOP
         pointsOnMap (tempArr) 
     }).fail(function(err){
         console.log("SOMETHING WENT WRONG!", err.responseText);
     })
-  }
+  } // END FUNCTION
 
   function clearMarkers() {
     setAllMap(null);
     var pointsArr = []
     var markers = []
-  
-  }
+  } // END FUNCTION
 
  $("#gf").click(function (){
     var gfTemp = loadRestrictions("gf")
@@ -192,7 +180,7 @@ $("#addRest").click(function(){
 $("#myLocation").click(function(){
   // $("#myLocation").val("Finding You......")
   getLocation()  
-})
+}) // END FUNCTION
 // $("#list").click(function(){
 //     window.location.href='#table';
 // })
@@ -204,12 +192,12 @@ $("#myLocation").click(function(){
 $("#back-to-top").click(function() {
   $("html, body").animate({ scrollTop: 0 }, "slow");
   return false;
-});
+}); 
 
 $("#list").click(function() {
   $("html, body").animate({ scrollTop: $(document).height() }, "slow");
   return false;
-});
+}); 
 
 // TABLE SORTER 
 $(function(){
@@ -235,10 +223,34 @@ $(function(){
     }
   });
    
+
+  //****** SWITCH ADD / REMOVE BEHAVIOR *******//
+
+  var switchArr = {gf: false, df: false, ef: false, sf: false};
+
+
+  // GF SWITCH INSIDE DIV RUNS FUNCTION WHEN CLICKED
+    $('#gfSwitchDiv').click(function(event) {
+      if ($("#gfSwitch").prop('checked')) {
+        console.log("checked")
+           loadRestrictions("gf");
+      } else {
+        console.log("unchecked")
+        clearMarkers()
+        for (key in switchArr) {
+          if (switchArr[key] === true) {
+            // loadRestrictions("gf")
+            console.log(key,"*********KEY**********");
+
+          }
+        }
+
+      } // END IF
+    }); // END FUNCTION
+     
+
 // USE THIS LINE TO CARRY OVER USERS PREFERENCES INTO SELECTED ITEMS
    // $("#gfSwitch").prop('checked', true); 
    
-
-  // initialize();
 });
 
