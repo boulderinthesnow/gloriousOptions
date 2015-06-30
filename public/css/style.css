@@ -20,7 +20,7 @@ html, body, #map-canvas {
   background-color: #fffff;
   border-radius: 5%;
   opacity: .25;
-  animation: fadeOut 1s;
+  animation: fadeMe 1s;
 }
 
 #panel:hover {
@@ -70,7 +70,7 @@ html, body {
 	background-color: #fffff;
 	border-radius: 35%;
 	opacity: .25;
-	animation: fadeOut 1s;
+	animation: fadeIn 1s;
 
 }
 
@@ -105,6 +105,10 @@ html, body {
   100% { opacity: 1; }
 }
 @-webkit-keyframes fadeOut {
+  0%   { opacity: 1; }
+  100% { opacity: .25; }
+}
+@-webkit-keyframes fadeMe {
   0%   { opacity: 1; }
   100% { opacity: .25; }
 }

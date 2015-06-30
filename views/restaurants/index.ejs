@@ -12,19 +12,18 @@
 		  </div>
 
 		  <div id="top">
-			  <span id="gf" class="hvr-shutter-in-vertical">Gluten Free</span> |
+			  <span id="gf" class="hvr-shutter-in-vertical">Gluten Free</span> 
 			  <span id="df" class="hvr-shutter-in-vertical">Dairy Free</span> |
 			  <span id="ef" class="hvr-shutter-in-vertical">Egg Free</span> |
 			  <span id="sf" class="hvr-shutter-in-vertical">Soy Free</span> |
 			  <span id="clear" class="hvr-shutter-in-vertical">CLEAR</span>
+			  <input type="checkbox" id="gfSwitch" style="width: 100px; height: 20px;" />
 		  </div>
 	</div>
 
 
 <!-- when click button, go through each rest running log options,--> 
 <!-- if logOptions returns GF, place on map  -->
-
-
 
 <!-- MAP -->
 
@@ -41,7 +40,6 @@
 				<th data-field="address">Address</th>
 				<th data-field="options">Options</th>
 				<th data-field="hours">Hours</th>
-				<th data-field="distance">Distance</th>
 				<th data-field="costs">Costs</th>
 				<th data-field="edit">Edit</th>
 				<th data-field="user">Created By</th>
@@ -60,7 +58,6 @@
 				<td><%=restaurant.address%></td>
 				<td><%=logOptions(restaurant)%></td>
 				<td><%=restaurant.hours%></td>
-				<td id="location">yoooo</td>
 				<td><%=restaurant.cost%></td>
 
 				<td><a href="/restaurants/<%=restaurant.id%>/edit"> edit restaurant</a></td>

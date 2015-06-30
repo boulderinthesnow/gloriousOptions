@@ -211,10 +211,33 @@ $("#list").click(function() {
   return false;
 });
 
+// TABLE SORTER 
 $(function(){
   $('#keywords').tablesorter(); 
 });
 
+// SIMPLE SWITCH TOGGLE SWITCH
+  $("#gfSwitch").toggleSwitch({
+    onLabel: "Gluten-Free",
+    offLabel: "Gluten",
+    width: "75px",
+    height: "35px"
+
+  });
+
+
+  $('#panel').click(function(event) {
+    if ($("#gfSwitch").prop('checked')) {
+      console.log("checked")
+         var gfTemp = loadRestrictions("gf")
+    } else {
+      console.log("unchecked")
+    }
+  });
+   
+// USE THIS LINE TO CARRY OVER USERS PREFERENCES INTO SELECTED ITEMS
+   // $("#gfSwitch").prop('checked', true); 
+   
 
   // initialize();
 });
