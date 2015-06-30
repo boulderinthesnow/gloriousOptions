@@ -101,7 +101,7 @@ $(function() {
 
   function randMillsec(){
     randNum = Math.floor(Math.random()*5000)+1
-    console.log(randNum)
+    //console.log(randNum)
   }
 
    pointsArr = []
@@ -214,36 +214,33 @@ $(function(){
   });
 
 
-  $('#gfSwitchDiv').click(function(event) {
-    if ($("#gfSwitch").prop('checked')) {
-      console.log("checked")
-         loadRestrictions("gf");
-    } else {
-      console.log("unchecked")
-    }
-  });
+  // $('#gfSwitchDiv').click(function(event) {
+  //   if ($("#gfSwitch").prop('checked')) {
+  //     console.log("checked")
+  //        loadRestrictions("gf");
+  //   } else {
+  //     console.log("unchecked")
+  //   }
+  // });
    
 
   //****** SWITCH ADD / REMOVE BEHAVIOR *******//
 
   var switchArr = {gf: false, df: false, ef: false, sf: false};
 
-
-  // GF SWITCH INSIDE DIV RUNS FUNCTION WHEN CLICKED
+  // SEE IF SWITCH CHECKED OR NOT
     $('#gfSwitchDiv').click(function(event) {
       if ($("#gfSwitch").prop('checked')) {
-        console.log("checked")
            loadRestrictions("gf");
+           switchArr.gf = true;
       } else {
-        console.log("unchecked")
-        clearMarkers()
-        for (key in switchArr) {
-          if (switchArr[key] === true) {
-            // loadRestrictions("gf")
-            console.log(key,"*********KEY**********");
-
-          }
-        }
+          switchArr.gf = false;
+          clearMarkers();
+          for (key in switchArr) {
+            if (switchArr[key] === true) {
+              loadRestrictions(key);
+            } // END IF
+          } // END FOR LOOP
 
       } // END IF
     }); // END FUNCTION
