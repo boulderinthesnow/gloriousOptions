@@ -226,10 +226,10 @@ $(function(){
   });
 
 
-  $('#panel').click(function(event) {
+  $('#gfSwitchDiv').click(function(event) {
     if ($("#gfSwitch").prop('checked')) {
       console.log("checked")
-         var gfTemp = loadRestrictions("gf")
+         loadRestrictions("gf");
     } else {
       console.log("unchecked")
     }
