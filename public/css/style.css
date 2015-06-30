@@ -23,6 +23,8 @@ html, body, #map-canvas {
   animation: fadeMe 1s;
 }
 
+
+
 #panel:hover {
 	animation: fadeIn 1s;
 	opacity: 1;
@@ -408,4 +410,9 @@ h1 {
   color: #DEEFF5;
   position: absolute;
   top: -2.75em;
+}
+
+#login {
+background-color: black;  
+color: red;
 }
