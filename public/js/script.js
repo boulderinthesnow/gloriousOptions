@@ -125,7 +125,7 @@ $(function() {
         });
     } // END FOR LOOP
   } // END FUNCTION 
-tempCount = 0;
+
   function loadRestrictions (restrict) {
         $.getJSON("/restaurants/database").done( function (restaurants) {
       var tempArr = [];  
@@ -137,9 +137,6 @@ tempCount = 0;
         pointsOnMap (tempArr) 
         tempArr.length
         tempArr = [];  
-        tempCount += 1
-        console.log(tempCount,"*********TEMPCOUNT**********");
-
     }).fail(function(err){
         console.log("SOMETHING WENT WRONG!", err.responseText);
     })
@@ -215,14 +212,6 @@ $(function(){
 
   });
 
- // SIMPLE SWITCH TOGGLE SWITCH
-   $("#gfSwitch").toggleSwitch({
-     onLabel: "Gluten-Free",
-     offLabel: "Gluten",
-     width: "75px",
-     height: "35px"
-
-   }); 
 
  // SIMPLE SWITCH TOGGLE SWITCH
    $("#dfSwitch").toggleSwitch({
@@ -232,6 +221,24 @@ $(function(){
      height: "35px"
 
    });    
+
+ // SIMPLE SWITCH TOGGLE SWITCH
+   $("#efSwitch").toggleSwitch({
+     onLabel: "Egg-Free",
+     offLabel: "Egg",
+     width: "75px",
+     height: "35px"
+
+   }); 
+
+ // SIMPLE SWITCH TOGGLE SWITCH
+   $("#sfSwitch").toggleSwitch({
+     onLabel: "Soy-Free",
+     offLabel: "Soy",
+     width: "75px",
+     height: "35px"
+
+   }); 
 
 
 
@@ -271,12 +278,8 @@ $(function(){
       if ($("#dfSwitch").prop('checked')) {
            loadRestrictions("df");
            switchArr.df = true;
-           console.log(switchArr.df,"*********SWITCHARR.DF**********");
-
       } else {
           switchArr.df = false;
-          console.log(switchArr.df,"*********SWITCHARR.DF**********");
-          
           clearMarkers();
           for (key in switchArr) {
             if (switchArr[key] === true) {
@@ -288,12 +291,12 @@ $(function(){
     }); // END FUNCTION
 
   // SEE IF SWITCH CHECKED OR NOT
-    $('#gfSwitchDiv').click(function(event) {
-      if ($("#gfSwitch").prop('checked')) {
-           loadRestrictions("gf");
-           switchArr.gf = true;
+    $('#efSwitchDiv').click(function(event) {
+      if ($("#efSwitch").prop('checked')) {
+           loadRestrictions("ef");
+           switchArr.ef = true;
       } else {
-          switchArr.gf = false;
+          switchArr.ef = false;
           clearMarkers();
           for (key in switchArr) {
             if (switchArr[key] === true) {
@@ -305,12 +308,12 @@ $(function(){
     }); // END FUNCTION
 
   // SEE IF SWITCH CHECKED OR NOT
-    $('#gfSwitchDiv').click(function(event) {
-      if ($("#gfSwitch").prop('checked')) {
-           loadRestrictions("gf");
-           switchArr.gf = true;
+    $('#sfSwitchDiv').click(function(event) {
+      if ($("#sfSwitch").prop('checked')) {
+           loadRestrictions("sf");
+           switchArr.sf = true;
       } else {
-          switchArr.gf = false;
+          switchArr.sf = false;
           clearMarkers();
           for (key in switchArr) {
             if (switchArr[key] === true) {
