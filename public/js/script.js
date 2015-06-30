@@ -32,6 +32,11 @@ $(function() {
 
     // distanceBtwnPoints(one,two);
 
+ // MAKE THIS FUNC ADD DISTANCE BTWN REST AND USER TO TABLE
+    // function addDistanceToTable(userLoc, restLoc){
+     
+    // }
+
   function distanceBtwnPoints (latLngA,latLngB){
     var distance = google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
     console.log(distance,"*********DISTANCE**********");
@@ -55,6 +60,8 @@ $(function() {
     console.log(allR,"*********ALLR**********");
 
 
+
+
   // Add a marker to the map and push to the array.
   function addMarker(location) {
     var marker = new google.maps.Marker({
@@ -63,6 +70,7 @@ $(function() {
       animation: google.maps.Animation.DROP
     });
     markers.push(marker);
+    return location
   }
     // Add a marker to the map at user location and push to the array.
   function addMarkerUserLoc(location) {
