@@ -23,18 +23,20 @@ $(function() {
       $("#myLocation").val("Finding You.......");
       }, 100)
     $("#myLocation").addClass('fade')
+
   }
 
-  // navigator.geolocation.getCurrentPosition(success);
+    // var one = new google.maps.LatLng(37, -122)
+    // var two = new google.maps.LatLng(38, -125)
+    // console.log(one,"*********ONE**********");
 
-  // function success(position) {
-  //   var lat = position.coords.latitude;
-  //   var long = position.coords.longitude;
-  //   var coords = new google.maps.LatLng(lat, long);
-  //   return coords
-  // }
+    // distanceBtwnPoints(one,two);
 
-  
+  function distanceBtwnPoints (latLngA,latLngB){
+    var distance = google.maps.geometry.spherical.computeDistanceBetween (latLngA, latLngB);
+    console.log(distance,"*********DISTANCE**********");
+
+  }  
 
   var map;
   var myLatLong = new google.maps.LatLng(37.7854224, -122.403726)
