@@ -118,17 +118,14 @@ $(function() {
               // if (!duplicateFound (pointsArr, lat, long) || markers.length === 0) {
                 pointsArr.push({lat:lat, long:long})
                 var myLatlng = new google.maps.LatLng(lat,long);
-                window.setTimeout(function() {
                     addMarker(myLatlng)  
-                    console.log (randMillsec())
-                }, randMillsec());
               // } // END IF
               console.log(pointsArr)
               console.log(lat, long, address)
         });
     } // END FOR LOOP
   } // END FUNCTION 
-
+tempCount = 0;
   function loadRestrictions (restrict) {
         $.getJSON("/restaurants/database").done( function (restaurants) {
       var tempArr = [];  
@@ -138,6 +135,11 @@ $(function() {
                } // END IF
         }; // END FOR LOOP
         pointsOnMap (tempArr) 
+        tempArr.length
+        tempArr = [];  
+        tempCount += 1
+        console.log(tempCount,"*********TEMPCOUNT**********");
+
     }).fail(function(err){
         console.log("SOMETHING WENT WRONG!", err.responseText);
     })
@@ -213,6 +215,25 @@ $(function(){
 
   });
 
+ // SIMPLE SWITCH TOGGLE SWITCH
+   $("#gfSwitch").toggleSwitch({
+     onLabel: "Gluten-Free",
+     offLabel: "Gluten",
+     width: "75px",
+     height: "35px"
+
+   }); 
+
+ // SIMPLE SWITCH TOGGLE SWITCH
+   $("#dfSwitch").toggleSwitch({
+     onLabel: "Dairy-Free",
+     offLabel: "Dairy",
+     width: "75px",
+     height: "35px"
+
+   });    
+
+
 
   // $('#gfSwitchDiv').click(function(event) {
   //   if ($("#gfSwitch").prop('checked')) {
@@ -227,6 +248,61 @@ $(function(){
   //****** SWITCH ADD / REMOVE BEHAVIOR *******//
 
   var switchArr = {gf: false, df: false, ef: false, sf: false};
+
+  // SEE IF SWITCH CHECKED OR NOT
+    $('#gfSwitchDiv').click(function(event) {
+      if ($("#gfSwitch").prop('checked')) {
+           loadRestrictions("gf");
+           switchArr.gf = true;
+      } else {
+          switchArr.gf = false;
+          clearMarkers();
+          for (key in switchArr) {
+            if (switchArr[key] === true) {
+              loadRestrictions(key);
+            } // END IF
+          } // END FOR LOOP
+
+      } // END IF
+    }); // END FUNCTION
+
+  // SEE IF SWITCH CHECKED OR NOT
+    $('#dfSwitchDiv').click(function(event) {
+      if ($("#dfSwitch").prop('checked')) {
+           loadRestrictions("df");
+           switchArr.df = true;
+           console.log(switchArr.df,"*********SWITCHARR.DF**********");
+
+      } else {
+          switchArr.df = false;
+          console.log(switchArr.df,"*********SWITCHARR.DF**********");
+          
+          clearMarkers();
+          for (key in switchArr) {
+            if (switchArr[key] === true) {
+              loadRestrictions(key);
+            } // END IF
+          } // END FOR LOOP
+
+      } // END IF
+    }); // END FUNCTION
+
+  // SEE IF SWITCH CHECKED OR NOT
+    $('#gfSwitchDiv').click(function(event) {
+      if ($("#gfSwitch").prop('checked')) {
+           loadRestrictions("gf");
+           switchArr.gf = true;
+      } else {
+          switchArr.gf = false;
+          clearMarkers();
+          for (key in switchArr) {
+            if (switchArr[key] === true) {
+              loadRestrictions(key);
+            } // END IF
+          } // END FOR LOOP
+
+      } // END IF
+    }); // END FUNCTION
 
   // SEE IF SWITCH CHECKED OR NOT
     $('#gfSwitchDiv').click(function(event) {
