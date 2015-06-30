@@ -143,36 +143,6 @@ back-to-top {
 }
 
 
-#gf:hover {
-	color: white;
-	background-color: #d1203f;
-	border-radius: 20%;
-}
-
-#df:hover {
-	color: white;
-	background-color: #2098d1;
-	border-radius: 20%;
-}
-
-#ef:hover {
-	color: white;
-	background-color: #d12098;
-	border-radius: 20%;
-}
-
-#sf:hover {
-	color: white;
-	background-color: #d1b220;
-	border-radius: 20%;
-}
-
-#clear:hover {
-	background-color: red;
-	border-radius: 20%;
-	color: white;
-}
-
 
 /* Shutter In Vertical */
 .hvr-shutter-in-vertical {

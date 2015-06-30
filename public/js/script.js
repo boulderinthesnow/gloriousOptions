@@ -258,6 +258,7 @@ $(function(){
 
   // SEE IF SWITCH CHECKED OR NOT
     $('#gfSwitchDiv').click(function(event) {
+      console.log($("#gfSwitch")[0].checked)
       if ($("#gfSwitch").prop('checked')) {
            loadRestrictions("gf");
            switchArr.gf = true;

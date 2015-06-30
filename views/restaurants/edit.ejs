@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 <div id="new-window">
   <div id="new-all">
-    <h1>NEW RESTUARANT</h1>
+    <h1>EDIT RESTUARANT</h1>
      <form action="/restaurants/<%=restaurant.id%>?_method=PUT" class="form-inline" method="POST" >
        <div class="form-group">
          <input type="text" name="restaurant[name]" id="name" class="form-control" autofocus value="<%=restaurant.name%>">
