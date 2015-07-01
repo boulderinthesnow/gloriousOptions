@@ -413,6 +413,40 @@ h1 {
 }
 
 #login {
-background-color: black;  
-color: red;
+background-color: white;
+opacity: .85;  
+border-radius: 5%;
+padding: 7px;
+width: 50%;
+color: black;
+margin: 0 auto;
+}
+
+#centerMe {
+  left:50%;
+  top:50%;
+  margin:100px 0 0 0px;
+}
+
+
+#loginBody { 
+  background-image: url("/images/login-bg.jpg");
+  background-position: center;
+  background-size: 100% 100%;
+
+  /*animation: animatedBackground 40s linear infinite;*/
+  animation: animatedBackground 10s ;
+  overflow: hidden;
+}
+
+@keyframes animatedBackground {
+  from { 
+    
+    background-size: 150% 150%;
+  }
+  to { 
+   /* background-position: 55% 55%; */
+    background-position: center; 
+    background-size: 100% 100%;
+   }
 }
