@@ -94,7 +94,7 @@ html, body {
 
 
 #new-window {
-	animation: fadeInScale 1s;
+	animation: fadeInScale .5s;
 }
 
 @-webkit-keyframes fadeIn {
@@ -106,6 +106,7 @@ html, body {
   0%   { opacity: .25; transform: scale(.5,.5);}
   100% { opacity: 1; }
 }
+
 @-webkit-keyframes fadeOut {
   0%   { opacity: 1; }
   100% { opacity: .25; }
@@ -420,6 +421,17 @@ padding: 7px;
 width: 50%;
 color: black;
 margin: 0 auto;
+}
+
+#newUser {
+background-color: white;
+opacity: .85;  
+border-radius: 5%;
+padding: 7px;
+width: 50%;
+color: black;
+margin: 0 auto;
+box-shadow: 10px 10px 5px #888888;
 }
 
 #centerMe {
